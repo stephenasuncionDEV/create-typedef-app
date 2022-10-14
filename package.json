@@ -8,15 +8,15 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "https://github.com/stephenasuncionDEV/gencomp.git"
+        "url": "https://github.com/stephenasuncionDEV/<repository>.git"
     },
-    "homepage": "https://github.com/stephenasuncionDEV/gencomp#readme",
+    "homepage": "https://github.com/stephenasuncionDEV/<repository>#readme",
     "funding": {
         "type" : "github",
         "url" : "https://github.com/sponsors/stephenasuncionDEV"
     },
     "bugs": {
-        "url": "https://github.com/stephenasuncionDEV/gencomp/issues"
+        "url": "https://github.com/stephenasuncionDEV/<repository>/issues"
     },
     "scripts": {
         "dev": "next dev",
