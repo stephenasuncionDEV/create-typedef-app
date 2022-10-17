@@ -10,6 +10,9 @@ assignees: ''
 **Describe the bug**
 A clear and concise description of what the bug is.
 
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
 **To Reproduce**
 Steps to reproduce the behavior:
 1. Go to '...'
@@ -20,11 +23,8 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
 **Desktop (please complete the following information):**
- - OS: [e.g. iOS]
+ - OS: [e.g. windows, mac, linux]
  - Browser [e.g. chrome, safari]
  - Version [e.g. 22]
 
