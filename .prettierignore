@@ -6,3 +6,4 @@ cache/
 
 next-env.d.ts
 *.yml
+*.md
