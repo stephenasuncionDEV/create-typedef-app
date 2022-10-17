@@ -1,6 +1,6 @@
 {
   "name": "next-js-template",
-  "description": "Description",
+  "description": "Template for next-js framework",
   "version": "0.0.1",
   "keywords": [
     "next-js-template"
@@ -10,15 +10,15 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stephenasuncionDEV/<repository>.git"
+    "url": "https://github.com/stephenasuncionDEV/next-js-template.git"
   },
-  "homepage": "https://github.com/stephenasuncionDEV/<repository>#readme",
+  "homepage": "https://github.com/stephenasuncionDEV/next-js-template#readme",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/stephenasuncionDEV"
   },
   "bugs": {
-    "url": "https://github.com/stephenasuncionDEV/<repository>/issues"
+    "url": "https://github.com/stephenasuncionDEV/next-js-template/issues"
   },
   "scripts": {
     "dev": "next dev",
