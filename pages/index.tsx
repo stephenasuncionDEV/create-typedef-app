@@ -9,6 +9,7 @@ const Home: NextPage = () => {
       <Link
         href="https://github.com/stephenasuncionDEV/next-js-template"
         isExternal
+        variant="link"
       >
         Github Repository
       </Link>
