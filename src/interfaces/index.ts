@@ -1,10 +1,10 @@
-import { ReactNode } from 'react'
+import { ReactNode } from "react";
 
 export interface Props {
-    children: ReactNode
+  children: ReactNode;
 }
 
 export interface ModalProps {
-    isOpen: boolean;
-    onClose: () => void;
+  isOpen: boolean;
+  onClose: () => void;
 }

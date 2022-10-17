@@ -1,23 +1,31 @@
-import { useState, Dispatch, SetStateAction } from 'react'
-import { useToast } from '@chakra-ui/react'
-import errorHandler from '@/helpers/errorHandler'
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useToast } from "@chakra-ui/react";
 
 export interface ILoginProps {
-    isLoggingIn: boolean;
-    setIsLoggingIn: Dispatch<SetStateAction<boolean>>;
+  isLoggingIn: boolean;
+  setIsLoggingIn: Dispatch<SetStateAction<boolean>>;
 }
 
 export const useLogin = (): ILoginProps => {
-    const toast = useToast({
-        title: 'Error',
-        status: 'error',
-        duration: 3000,
-        isClosable: true
-    })
-    const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const toast = useToast({
+    title: "Error",
+    status: "error",
+    duration: 3000,
+    isClosable: true,
+  });
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-    return {
-        isLoggingIn,
-        setIsLoggingIn
-    }
-}
+  useEffect(() => {
+    if (!toast) return;
+    toast({
+      title: "Success",
+      status: "success",
+      description: "loaded",
+    });
+  }, [toast]);
+
+  return {
+    isLoggingIn,
+    setIsLoggingIn,
+  };
+};
