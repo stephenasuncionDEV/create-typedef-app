@@ -11,5 +11,5 @@
 </p>
 
 <p align="center">
-    Template for Next.js framework that includes Typescript, Chakra UI, Sample Context and Hooks, Prettier, Husky, Typescript ESLint, Node Version Manager, Dependabot, Github Issue and Security Templates, Github Sponsor, CodeQL Analysis
+    Template for Next.js framework that includes Typescript, Chakra UI, Sample Context and Hooks, Prettier, Husky, Typescript ESLint, Node Version Manager, Dependabot, Github Issue and Security Templates, Github Sponsor, CodeQL Analysis, and SASS.
 </p>
