@@ -40,3 +40,9 @@ yarn lint:types - Checks type of the whole codebase
 yarn lint:format - Checks format of the whole codebase
 yarn lint:staged - Runs all 3 commands
 ```
+
+## Pull Requests
+
+When submitting a pull request, make sure that your branch name is `YOUR_GITHUB_USERNAME/TITLE_OF_PR`
+
+Example: `stephenasuncionDEV/github-update`
