@@ -34,7 +34,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.3.5",
+    "@chakra-ui/react": "^2.3.6",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@react-icons/all-files": "^4.1.0",
