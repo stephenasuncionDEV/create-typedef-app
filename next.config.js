@@ -11,7 +11,7 @@ const nextConfig = withBundleAnalyzer({
     TEST: process.env.TEST,
   },
   images: {
-    domains: ["gateway.ipfscdn.io"],
+    domains: [""],
   },
 });
 
