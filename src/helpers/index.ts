@@ -5,7 +5,7 @@ export const encrypt = (str: string) => {
     const salt = CryptoJS.lib.WordArray.random(128 / 8);
     const iv = CryptoJS.lib.WordArray.random(128 / 8);
 
-    const key = CryptoJS.PBKDF2(process.env.APP_NAME!, salt, {
+    const key = CryptoJS.PBKDF2(process.env.SALT_KEY!, salt, {
       keySize: 256 / 32,
       iterations: 100,
     });
@@ -31,7 +31,7 @@ export const decrypt = (str: string) => {
     const iv = CryptoJS.enc.Hex.parse(str.substring(32, 32));
     const encrypted = str.substring(64);
 
-    const key = CryptoJS.PBKDF2(process.env.APP_NAME!, salt, {
+    const key = CryptoJS.PBKDF2(process.env.SALT_KEY!, salt, {
       keySize: 256 / 32,
       iterations: 100,
     });
