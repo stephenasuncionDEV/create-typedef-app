@@ -39,6 +39,7 @@
     "@emotion/styled": "^11",
     "@react-icons/all-files": "^4.1.0",
     "@vercel/og": "^0.0.20",
+    "crypto-js": "^4.1.1",
     "framer-motion": "^7",
     "next": "13.0.0",
     "react": "18.2.0",
@@ -47,6 +48,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.0.0",
+    "@types/crypto-js": "^4.1.1",
     "@types/node": "18.11.7",
     "@types/react": "18.0.24",
     "@types/react-dom": "18.0.8",
