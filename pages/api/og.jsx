@@ -4,7 +4,7 @@ export const config = {
   runtime: "experimental-edge",
 };
 
-export default function () {
+const OG = () => {
   return new ImageResponse(
     (
       <div
@@ -18,4 +18,6 @@ export default function () {
       </div>
     ),
   );
-}
+};
+
+export default OG;
