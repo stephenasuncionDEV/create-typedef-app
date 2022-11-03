@@ -14,9 +14,6 @@ const nextConfig = withBundleAnalyzer({
   images: {
     domains: [""],
   },
-  experimental: {
-    appDir: true,
-  },
 });
 
 module.exports = nextConfig;
