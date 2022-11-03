@@ -1,24 +1,24 @@
 {
-  "name": "next-js-template",
-  "description": "Template for next-js framework",
+  "name": "create-typedef-app",
+  "description": "Tech stack template by Stephen Asuncion",
   "version": "0.0.1",
   "keywords": [
-    "next-js-template"
+    "create-typedef-app"
   ],
   "author": "StephenAsuncion",
   "publisher": "StephenAsuncion",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/stephenasuncionDEV/next-js-template.git"
+    "url": "https://github.com/stephenasuncionDEV/create-typedef-app.git"
   },
-  "homepage": "https://github.com/stephenasuncionDEV/next-js-template#readme",
+  "homepage": "https://github.com/stephenasuncionDEV/create-typedef-app#readme",
   "funding": {
     "type": "github",
     "url": "https://github.com/sponsors/stephenasuncionDEV"
   },
   "bugs": {
-    "url": "https://github.com/stephenasuncionDEV/next-js-template/issues"
+    "url": "https://github.com/stephenasuncionDEV/create-typedef-app/issues"
   },
   "scripts": {
     "dev": "next dev",
