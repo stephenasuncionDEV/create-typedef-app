@@ -1,15 +1,18 @@
-<p align="center">
-    <a href='https://www.nfthost.app/' rel='nofollow'>
-        <img src='./public/assets/images/logo.png' alt='Next.js Template Logo' width='125px'/>
-    </a>
-</p>
+<div align="center">
+  <img src='./public/assets/images/logo.png' alt='Next.js Template Logo' width='125px'/>
+</div>
 
-<h1 align="center">Next.js Template</h1>
+<h1 align="center">create-typedef-app</h1>
 
-<p align="center">
-    <img src='https://github.com/stephenasuncionDEV/next-js-template/actions/workflows/codeql.yml/badge.svg' alt='CodeQl Badge'>
-</p>
+<div align="center">
+  <img src='https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/codeql.yml/badge.svg' alt='CodeQl Badge'>
+</div>
 
 <p align="center">
-    Template for Next.js framework that includes Typescript, Chakra UI, Sample Context and Hooks, Prettier, Husky, Typescript ESLint, Node Version Manager, Dependabot, Github Issue and Security Templates, Github Sponsor, CodeQL Analysis, and SASS.
+    Tech stack template by Stephen Asuncion.
 </p>
+
+## Stack
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://typescriptlang.org/)
+- [ChakraUI](https://chakra-ui.com/)
