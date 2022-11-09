@@ -1,10 +1,12 @@
 ---
 name: ✨ Feature request
 about: Suggest an idea for this project
-
 ---
 
-**Describe the solution you'd like**
+**Title**
+1-3 word(s) that describes the feature
+
+**Description**
 A clear and concise description of what you want to happen.
 
 **Additional context**
