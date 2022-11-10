@@ -9,7 +9,7 @@
 </div>
 
 <p align="center">
-    Tech stack template by Stephen Asuncion.
+  Tech stack template by Stephen Asuncion.
 </p>
 
 ## Stack
