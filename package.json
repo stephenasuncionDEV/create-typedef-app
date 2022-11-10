@@ -31,6 +31,7 @@
     "format": "prettier --write .",
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true yarn build",
+    "node:switch": "for /f usebackq %i in (`type .nvmrc`) do nvm use %i",
     "start": "next start"
   },
   "dependencies": {

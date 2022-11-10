@@ -10,6 +10,11 @@ In the root folder, create a new env file called `.env.local` with environment v
 
 ## Running the App
 
+Switch to supported node version:
+```
+yarn node:switch
+```
+
 To run the app:
 
 ```
