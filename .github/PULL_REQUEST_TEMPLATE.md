@@ -8,4 +8,4 @@
 <!-- You can replace the `[ ]` with `[x]` to mark each task as done. -->
 
 - [ ] I’ve tested my code to confirm my change works.
-- [ ] I’ve read the [contributing guidelines](https://github.com/stephenasuncionDEV/next-js-template/blob/main/CONTRIBUTING.md).
+- [ ] I’ve read the [contributing guidelines](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/CONTRIBUTING.md).
