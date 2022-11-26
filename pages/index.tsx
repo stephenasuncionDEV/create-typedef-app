@@ -29,7 +29,7 @@ const Home: NextPage = () => {
 
   return (
     <Center as="main" flexDir="column" minH="100vh">
-      <Meta title="Login" />
+      <Meta title="Website" />
       <VStack>
         <Button variant="primary" onClick={() => signIn()}>
           Sign In
