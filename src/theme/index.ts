@@ -13,19 +13,19 @@ export type Fonts = {
 };
 
 const config: ThemeConfig = {
-  initialColorMode: "light",
+  initialColorMode: "dark",
   useSystemColorMode: false,
 };
 
 const fonts: Fonts = {
-  heading: "Poppins, Inter, sans-serif",
-  body: "Poppins, Inter, sans-serif",
+  heading: "Inter, Poppins, sans-serif",
+  body: "Inter, Poppins, sans-serif",
 };
 
 const styles: Styles = {
   global: (props: GlobalStyleProps) => ({
     body: {
-      bg: mode("white", "black")(props),
+      bg: mode("white", "rgb(5,1,13)")(props),
     },
   }),
 };
