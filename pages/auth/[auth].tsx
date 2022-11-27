@@ -230,7 +230,7 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
 };
 
 export const getServerSideProps = async (
-  context: GetServerSidePropsContext,
+  context: GetServerSidePropsContext /* eslint-disable-line @typescript-eslint/no-unused-vars */,
 ) => {
   const providers = await getProviders();
   return {

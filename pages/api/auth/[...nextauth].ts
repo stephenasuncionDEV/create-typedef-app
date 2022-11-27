@@ -20,6 +20,7 @@ export interface SignInCallback {
 }
 
 export interface SessionCallback {
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   session: any;
   user: User | AdapterUser;
 }
@@ -35,12 +36,12 @@ export default function auth(
       GithubProvider({
         clientId: process.env.GITHUB_ID as string,
         clientSecret: process.env.GITHUB_SECRET as string,
-        async profile(profile, tokens) {
+        async profile(profile) {
           return Promise.resolve({
             id: profile.id.toString(),
             name: profile.name,
             email: profile.email,
-            image: `https://ui-avatars.com/api/?name=${profile.name!.replaceAll(
+            image: `https://ui-avatars.com/api/?name=${profile.name.replaceAll(
               " ",
               "+",
             )}`,
@@ -50,12 +51,12 @@ export default function auth(
       GoogleProvider({
         clientId: process.env.GOOGLE_ID as string,
         clientSecret: process.env.GOOGLE_SECRET as string,
-        async profile(profile, tokens) {
+        async profile(profile) {
           return Promise.resolve({
             id: profile.id,
             name: profile.name,
             email: profile.email,
-            image: `https://ui-avatars.com/api/?name=${profile.name!.replaceAll(
+            image: `https://ui-avatars.com/api/?name=${profile.name.replaceAll(
               " ",
               "+",
             )}`,
@@ -91,7 +92,7 @@ export default function auth(
           if (req.headers.referer.indexOf("auth/login") !== -1) {
             if (!user)
               throw new Error("User with that email address does not exist.");
-            if (decrypt(user.password!) !== password)
+            if (decrypt(user.password as string) !== password)
               throw new Error("Invalid email or password.");
           } else if (req.headers.referer.indexOf("auth/register") !== -1) {
             if (user) throw new Error("Email was already used.");
@@ -109,7 +110,7 @@ export default function auth(
               },
             });
 
-            const newAccount = await prisma.account.create({
+            await prisma.account.create({
               data: {
                 provider: "credentials",
                 type: "credential",
@@ -144,14 +145,14 @@ export default function auth(
         if (!user || !account) return false;
 
         if (
-          req.query.nextauth!.includes("callback") &&
-          req.query.nextauth!.includes("credentials") &&
+          (req.query.nextauth as string[]).includes("callback") &&
+          (req.query.nextauth as string[]).includes("credentials") &&
           req.method === "POST" &&
           user
         ) {
           const sessionToken = randomUUID() ?? uuid();
 
-          let sessionExpiry = new Date();
+          const sessionExpiry = new Date();
           sessionExpiry.setDate(sessionExpiry.getDate() + 30);
 
           await PrismaAdapter(prisma).createSession({
@@ -179,8 +180,8 @@ export default function auth(
     jwt: {
       async encode({ token, secret, maxAge }: JWTEncodeParams) {
         if (
-          req.query.nextauth!.includes("callback") &&
-          req.query.nextauth!.includes("credentials") &&
+          (req.query.nextauth as string[]).includes("callback") &&
+          (req.query.nextauth as string[]).includes("credentials") &&
           req.method === "POST"
         ) {
           const cookie = getCookie("next-auth.session-token", { req, res });
@@ -193,8 +194,8 @@ export default function auth(
       },
       async decode({ token, secret }: JWTDecodeParams) {
         if (
-          req.query.nextauth!.includes("callback") &&
-          req.query.nextauth!.includes("credentials") &&
+          (req.query.nextauth as string[]).includes("callback") &&
+          (req.query.nextauth as string[]).includes("credentials") &&
           req.method === "POST"
         ) {
           return null;

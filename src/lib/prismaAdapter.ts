@@ -7,6 +7,7 @@ import type {
   AdapterSession,
 } from "next-auth/adapters";
 
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 export default function PrismaAdapter(p: PrismaClient, options = {}): Adapter {
   return {
     async createUser(data) {
@@ -71,7 +72,7 @@ export default function PrismaAdapter(p: PrismaClient, options = {}): Adapter {
     },
     async createVerificationToken(data) {
       const verificationToken = await p.verificationToken.create({ data });
-      // @ts-expect-errors
+      // @ts-expect-errors // MongoDB id
       if (verificationToken.id) delete verificationToken.id;
       return verificationToken;
     },
@@ -80,7 +81,7 @@ export default function PrismaAdapter(p: PrismaClient, options = {}): Adapter {
         const verificationToken = await p.verificationToken.delete({
           where: { identifier, token },
         });
-        // @ts-expect-errors // MongoDB needs an ID, but we don't
+        // @ts-expect-errors // MongoDB id
         if (verificationToken.id) delete verificationToken.id;
         return verificationToken;
       } catch (error) {

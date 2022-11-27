@@ -54,7 +54,7 @@ export const useAuthForm = (): AuthFormResult => {
         if (!email || !password)
           throw new Error("Email and password must be filled in.");
       } else if (type === "register") {
-        let newErrors = {} as AuthFormErrors;
+        const newErrors = {} as AuthFormErrors;
 
         if (!name || name.length > 70)
           newErrors.name = "Must have a name between 1 and 70 characters";
@@ -90,6 +90,7 @@ export const useAuthForm = (): AuthFormResult => {
       setIsLoggingIn(false);
 
       router.push("/");
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     } catch (err: any) {
       setIsLoggingIn(false);
       const msg = errorHandler(err);
