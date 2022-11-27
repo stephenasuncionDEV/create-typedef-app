@@ -28,6 +28,8 @@ export default function auth(
   req: NextApiRequest,
   res: NextApiResponse,
 ): NextAuthOptions {
+  const isLogin = req.body.callbackUrl?.includes("login") ?? false;
+
   return NextAuth(req, res, {
     providers: [
       GithubProvider({
@@ -87,7 +89,8 @@ export default function auth(
           });
 
           if (req.headers.referer.indexOf("auth/login") !== -1) {
-            if (!user) throw new Error("User not found. Please sign up.");
+            if (!user)
+              throw new Error("User with that email address does not exist.");
             if (decrypt(user.password!) !== password)
               throw new Error("Invalid email or password.");
           } else if (req.headers.referer.indexOf("auth/register") !== -1) {
@@ -122,7 +125,10 @@ export default function auth(
     ],
     pages: {
       signIn: "/auth/login",
-      signOut: "/",
+      signOut: "/auth/login",
+      error: `/auth/${isLogin ? "login" : "register"}`,
+      verifyRequest: "/",
+      newUser: "/",
     },
     session: {
       strategy: "database",
@@ -154,8 +160,6 @@ export default function auth(
             expires: sessionExpiry,
           });
 
-          console.log("signIn", sessionToken, sessionExpiry);
-
           setCookie("next-auth.session-token", sessionToken, {
             req,
             res,
@@ -166,7 +170,6 @@ export default function auth(
         return true;
       },
       async session({ session, user }: SessionCallback) {
-        console.log("session", session);
         if (session.user) {
           session.user.id = user.id;
         }
