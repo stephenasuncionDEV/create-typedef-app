@@ -9,6 +9,7 @@ const nextConfig = withBundleAnalyzer({
   reactStrictMode: false,
   swcMinify: true,
   env: {
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     MONGODB_URI: process.env.MONGODB_URI,
     GITHUB_ID: process.env.GITHUB_ID,
