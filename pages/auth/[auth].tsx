@@ -1,4 +1,4 @@
-import { FC, useRef, MutableRefObject } from "react";
+import { FC, useState, useRef, MutableRefObject } from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import NextImage from "next/image";
@@ -17,11 +17,15 @@ import {
   Input,
   SlideFade,
   Divider,
+  FormControl,
+  FormErrorMessage,
+  InputGroup,
+  InputRightElement,
 } from "@chakra-ui/react";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaGoogle } from "@react-icons/all-files/fa/FaGoogle";
 import Meta from "@/components/Meta";
-import { useAuth } from "@/hooks/useAuth";
+import { useAuthForm } from "@/hooks/useAuthForm";
 
 export interface SignInProps {
   providers: Record<LiteralUnion<AvailableProviderType>, AvailableSafeProvider>;
@@ -38,13 +42,14 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
   const nameInput = useRef() as MutableRefObject<HTMLInputElement>;
   const emailInput = useRef() as MutableRefObject<HTMLInputElement>;
   const passwordInput = useRef() as MutableRefObject<HTMLInputElement>;
-  const { authenticate } = useAuth();
+  const [showPass, setShowPass] = useState(false);
+  const { authenticate, errors } = useAuthForm();
 
   return (
     <Center minH="100vh">
       <Meta title={isLogin ? "Login" : "Register"} />
       <SlideFade in={!isFallback} offsetY="50px">
-        <Wrap spacing="8em">
+        <Wrap spacing="8em" align="center">
           {isRegister && (
             <>
               <Flex flexDir="column" alignItems="center">
@@ -59,7 +64,7 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
               />
             </>
           )}
-          <Flex flexDir="column" alignItems="center">
+          <Flex flexDir="column" alignItems="center" maxW="288px">
             <NextImage
               src="/assets/images/logo.svg"
               alt="Template Logo"
@@ -106,42 +111,69 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
               onSubmit={(e) => {
                 e.preventDefault();
                 authenticate({
-                  name: nameInput.current.value.trim(),
-                  email: emailInput.current.value.trim(),
-                  password: passwordInput.current.value.trim(),
+                  name: nameInput.current?.value.trim(),
+                  email: emailInput.current?.value.trim(),
+                  password: passwordInput.current?.value.trim(),
                   type: isLogin ? "login" : "register",
                 });
               }}
             >
               {isRegister && (
+                <FormControl isInvalid={!!errors?.name?.length}>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Name"
+                    size="lg"
+                    fontSize="10pt"
+                    ref={nameInput}
+                  />
+                  {errors?.name && (
+                    <FormErrorMessage>{errors?.name}</FormErrorMessage>
+                  )}
+                </FormControl>
+              )}
+              <FormControl isInvalid={!!errors?.email?.length}>
                 <Input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Name"
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Email address"
                   size="lg"
                   fontSize="10pt"
-                  ref={nameInput}
+                  ref={emailInput}
                 />
-              )}
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Email address"
-                size="lg"
-                fontSize="10pt"
-                ref={emailInput}
-              />
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Password"
-                size="lg"
-                fontSize="10pt"
-                ref={passwordInput}
-              />
+                {errors?.email && (
+                  <FormErrorMessage>{errors?.email}</FormErrorMessage>
+                )}
+              </FormControl>
+              <FormControl isInvalid={!!errors?.password?.length}>
+                <InputGroup>
+                  <Input
+                    id="password"
+                    name="password"
+                    type={showPass ? "text" : "password"}
+                    placeholder="Password"
+                    size="lg"
+                    fontSize="10pt"
+                    ref={passwordInput}
+                  />
+                  <InputRightElement h="full" width="4.5rem" mr=".25em">
+                    <Button
+                      h="1.75rem"
+                      size="sm"
+                      onClick={() => setShowPass((prevState) => !prevState)}
+                      fontSize="10pt"
+                    >
+                      {showPass ? "Hide" : "Show"}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                {errors?.password && (
+                  <FormErrorMessage>{errors?.password}</FormErrorMessage>
+                )}
+              </FormControl>
               <Button
                 variant="outline"
                 size="lg"
@@ -157,13 +189,7 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
               </Button>
             </VStack>
             {isRegister && (
-              <Text
-                fontSize="9pt"
-                mt="1em"
-                variant="subtle"
-                maxW="170px"
-                textAlign="center"
-              >
+              <Text fontSize="9pt" mt="1em" variant="subtle" textAlign="center">
                 By continuing you agree to our{" "}
                 <NextLink
                   href="/about/terms"
@@ -172,7 +198,17 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
                   passHref
                 >
                   Terms of Service
+                </NextLink>{" "}
+                and{" "}
+                <NextLink
+                  href="/about/terms"
+                  style={{ color: "#3182ce" }}
+                  shallow
+                  passHref
+                >
+                  Privacy Policy
                 </NextLink>
+                .
               </Text>
             )}
             <Text fontSize="10pt" mt="2em">
