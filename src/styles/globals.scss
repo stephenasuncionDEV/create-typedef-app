@@ -29,3 +29,21 @@ a {
     background: black;
   }
 }
+
+@mixin centered-gradient($angle) {
+  background: linear-gradient(
+    $angle,
+    rgba(5, 1, 13, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(5, 1, 13, 0) 100%
+  );
+  width: 1px;
+}
+
+.vertical-divider {
+  @include centered-gradient(180deg);
+}
+
+.horizontal-divider {
+  @include centered-gradient(90deg);
+}

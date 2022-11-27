@@ -18,13 +18,14 @@
     "paths": {
       "@/components/*": ["src/components/*"],
       "@/theme/*": ["src/theme/*"],
-      "@/providers/*": ["src/providers/*"],
-      "@/config/*": ["src/config/*"],
-      "@/hooks/*": ["src/hooks/*"],
-      "@/types/*": ["src/types/*"],
-      "@/interfaces/*": ["src/interfaces/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/helpers/*": ["src/helpers/*"]
+      "@/providers/*": ["src/providers/*"],
+      "@/hooks/*": ["src/hooks/*"],
+      "@/config/*": ["src/config/*"],
+      "@/lib/*": ["src/lib/*"],
+      "@/helpers/*": ["src/helpers/*"],
+      "@/interfaces/*": ["src/interfaces/*"],
+      "@/types/*": ["types/*"]
     },
     "plugins": [
       {

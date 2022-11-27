@@ -38,13 +38,17 @@
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@prisma/client": "^4.6.1",
     "@react-icons/all-files": "^4.1.0",
     "@vercel/og": "^0.0.21",
+    "cookies-next": "^2.1.1",
     "crypto-js": "^4.1.1",
     "framer-motion": "^7",
     "next": "13.0.5",
+    "next-auth": "^4.17.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^13.0.5",
@@ -60,6 +64,7 @@
     "eslint-config-prettier": "^8.5.0",
     "husky": "^8.0.2",
     "prettier": "^2.8.0",
+    "prisma": "^4.6.1",
     "sass": "^1.56.1",
     "typescript": "4.9.3"
   }

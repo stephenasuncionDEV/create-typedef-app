@@ -1,22 +1,41 @@
 import type { NextPage } from "next";
-import NextImage from "next/image";
-import NextLink from "next/link";
-import { Flex } from "@chakra-ui/react";
+import { Center, Button, VStack, Spinner } from "@chakra-ui/react";
 import Meta from "@/components/Meta";
-import ImageLogo from "../public/assets/images/logo.png";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Home: NextPage = () => {
+  const { data: session, status } = useSession();
+  const loading = status === "loading";
+
+  if (loading)
+    return (
+      <Center as="main" flexDir="column" minH="100vh">
+        <Spinner />
+      </Center>
+    );
+
+  if (session) {
+    return (
+      <Center as="main" flexDir="column" minH="100vh">
+        <Meta title="Website" />
+        <VStack>
+          <Button variant="primary" onClick={() => signOut()}>
+            Logout
+          </Button>
+        </VStack>
+      </Center>
+    );
+  }
+
   return (
-    <Flex as="main" flexDir="column">
+    <Center as="main" flexDir="column" minH="100vh">
       <Meta title="Website" />
-      <NextImage src={ImageLogo} alt="Logo" placeholder="blur" />
-      <NextLink
-        href="https://github.com/stephenasuncionDEV/next-js-template"
-        target="_blank"
-      >
-        Github Repository
-      </NextLink>
-    </Flex>
+      <VStack>
+        <Button variant="primary" onClick={() => signIn()}>
+          Sign In
+        </Button>
+      </VStack>
+    </Center>
   );
 };
 
