@@ -9,7 +9,7 @@ import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import PrismaAdapter from "@/lib/prismaAdapter";
-import prisma from "@/lib/prismaDb";
+import prisma from "@/lib/prismadb";
 import { encrypt, decrypt } from "@/helpers/index";
 import { setCookie, getCookie } from "cookies-next";
 import { randomUUID } from "crypto";
