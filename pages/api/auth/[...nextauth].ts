@@ -146,8 +146,8 @@ export default function auth(
         if (!user || !account) return false;
 
         if (
-          req.query.nextauth!.includes("callback") &&
-          req.query.nextauth!.includes("credentials") &&
+          (req.query.nextauth as string[]).includes("callback") &&
+          (req.query.nextauth as string[]).includes("credentials") &&
           req.method === "POST" &&
           user
         ) {
@@ -181,8 +181,8 @@ export default function auth(
     jwt: {
       async encode({ token, secret, maxAge }: JWTEncodeParams) {
         if (
-          req.query.nextauth!.includes("callback") &&
-          req.query.nextauth!.includes("credentials") &&
+          (req.query.nextauth as string[]).includes("callback") &&
+          (req.query.nextauth as string[]).includes("credentials") &&
           req.method === "POST"
         ) {
           const cookie = getCookie("next-auth.session-token", { req, res });
@@ -195,8 +195,8 @@ export default function auth(
       },
       async decode({ token, secret }: JWTDecodeParams) {
         if (
-          req.query.nextauth!.includes("callback") &&
-          req.query.nextauth!.includes("credentials") &&
+          (req.query.nextauth as string[]).includes("callback") &&
+          (req.query.nextauth as string[]).includes("credentials") &&
           req.method === "POST"
         ) {
           return null;
