@@ -38,7 +38,7 @@
     "@chakra-ui/react": "^2.4.1",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
-    "@prisma/client": "^4.6.1",
+    "@prisma/client": "^4.7.0",
     "@react-icons/all-files": "^4.1.0",
     "@vercel/og": "^0.0.21",
     "cookies-next": "^2.1.1",
