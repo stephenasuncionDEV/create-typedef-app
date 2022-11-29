@@ -35,7 +35,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.4.1",
+    "@chakra-ui/react": "^2.4.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@prisma/client": "^4.6.1",
