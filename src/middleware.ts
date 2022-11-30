@@ -1,19 +1,47 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import prisma from "@/lib/prismadb";
 
-// ToDo: Set Authentication here
-export function middleware(request: NextRequest) {
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("X-Powered-By", "Next.js");
-  requestHeaders.set("X-Version", "13.0.0");
+export interface SessionCookie {
+  name: string;
+  value: string;
+}
 
-  const response = NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+export async function middleware(req: NextRequest) {
+  const res = NextResponse.next();
+  const { pathname } = req.nextUrl;
 
-  response.headers.set("X-Powered-By", "Next.js");
-  response.headers.set("X-Version", "13.0.0");
-  return response;
+  if (
+    pathname.startsWith("/_next") ||
+    pathname.startsWith("/api") ||
+    pathname.startsWith("/static") ||
+    /\.(.*)$/.test(pathname)
+  )
+    return res;
+
+  const authCookie = req.cookies.get("next-auth.session-token") as
+    | SessionCookie
+    | undefined;
+
+  const securedRoutes = ["/dashboard"];
+  const repelRoutes = ["/auth"];
+  const protectedRoutes = securedRoutes.concat(repelRoutes);
+
+  for (let i = 0; i < protectedRoutes.length; i++) {
+    const route = protectedRoutes[i];
+    if (!req.nextUrl.pathname.startsWith(route)) continue;
+
+    if (securedRoutes.includes(route) && !authCookie) {
+      return NextResponse.redirect(new URL("/auth/login", req.url));
+    }
+
+    if (repelRoutes.includes(route) && authCookie) {
+      return NextResponse.redirect(new URL("/dashboard", req.url));
+    }
+
+    // ToDo: check session token in db
+
+    break;
+  }
+
+  return res;
 }
