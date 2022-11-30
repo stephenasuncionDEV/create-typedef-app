@@ -1,14 +1,14 @@
 import { useSession } from "next-auth/react";
 import type { Session } from "next-auth";
 
-export interface AuthResult {
+export interface AuthDataResult {
   session: Session | null;
   isAuthenticated: boolean;
   isUnAuthenticated: boolean;
   isLoading: boolean;
 }
 
-export const useAuthData = (): AuthResult => {
+export const useAuthData = (): AuthDataResult => {
   const { data: session, status } = useSession();
   const isAuthenticated = status === "authenticated";
   const isUnAuthenticated = status === "unauthenticated";
