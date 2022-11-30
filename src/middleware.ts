@@ -1,5 +1,6 @@
+import type { Session } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
-import prisma from "@/lib/prismadb";
+import config from "@/config/index";
 
 export interface SessionCookie {
   name: string;
@@ -28,17 +29,35 @@ export async function middleware(req: NextRequest) {
 
   for (let i = 0; i < protectedRoutes.length; i++) {
     const route = protectedRoutes[i];
+
     if (!req.nextUrl.pathname.startsWith(route)) continue;
 
     if (securedRoutes.includes(route) && !authCookie) {
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
 
-    if (repelRoutes.includes(route) && authCookie) {
-      return NextResponse.redirect(new URL("/dashboard", req.url));
-    }
+    if (authCookie) {
+      const { value: sessionToken } = authCookie as SessionCookie;
 
-    // ToDo: check session token in db
+      const session = await fetch(
+        `${config.clientURL}/api/auth/verifySession`,
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ sessionToken }),
+        },
+      );
+
+      const sessionData = (await session.json()) as Session;
+      const isVerified = sessionToken === sessionData.sessionToken;
+
+      if (isVerified && repelRoutes.includes(route) && authCookie) {
+        return NextResponse.redirect(new URL("/dashboard", req.url));
+      }
+    }
 
     break;
   }
