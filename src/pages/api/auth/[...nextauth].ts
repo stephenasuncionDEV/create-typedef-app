@@ -33,13 +33,13 @@ export interface SessionCallback {
   user: User | AdapterUser;
 }
 
-export default function auth(
+export const AuthOption = (
   req: NextApiRequest,
   res: NextApiResponse,
-): NextAuthOptions {
+): NextAuthOptions => {
   const isLogin = req.body.callbackUrl?.includes("login") ?? false;
 
-  return NextAuth(req, res, {
+  return {
     providers: [
       GithubProvider({
         clientId: process.env.GITHUB_ID as string,
@@ -212,6 +212,14 @@ export default function auth(
         return await decode({ token, secret });
       },
     },
-    debug: true,
-  });
+    debug: false,
+  };
+};
+
+export default function auth(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): NextAuthOptions {
+  const option = AuthOption(req, res);
+  return NextAuth(req, res, option);
 }
