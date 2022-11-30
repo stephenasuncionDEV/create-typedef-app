@@ -24,8 +24,8 @@ import {
 } from "@chakra-ui/react";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaGoogle } from "@react-icons/all-files/fa/FaGoogle";
+import { useAuthForm } from "@/hooks/auth/useAuthForm";
 import Meta from "@/components/Meta";
-import { useAuthForm } from "@/hooks/useAuthForm";
 
 export interface SignInProps {
   providers: Record<LiteralUnion<AvailableProviderType>, AvailableSafeProvider>;
