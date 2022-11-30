@@ -83,7 +83,9 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
                 .map((provider) => (
                   <div key={provider.name} style={{ minWidth: "135.73px" }}>
                     <Button
-                      onClick={() => signIn(provider.id)}
+                      onClick={() =>
+                        signIn(provider.id, { callbackUrl: "/dashboard" })
+                      }
                       leftIcon={
                         {
                           github: <FaGithub fontSize="16pt" />,
