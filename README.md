@@ -2,7 +2,7 @@
 
 # create-typedef-app
 
-![CodeQl Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/codeql.yml/badge.svg)
+![CodeQl Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/codeql-analysis.yml/badge.svg) ![DockerHub Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/docker-deployment.yml/badge.svg)
 
 > Tech stack template by Stephen Asuncion.
 
@@ -18,6 +18,21 @@ create-typedef-template is a full-stack web application template that contains t
 ## How to use
 
 Go to [create-typedef-app repository](https://github.com/stephenasuncionDEV/create-typedef-app), and click `Use this template`.
+
+### Configurations
+
+GitHub Actions Secrets
+
+```
+DOCKER_HUB_USERNAME
+DOCKER_HUB_REPOSITORY
+DOCKER_HUB_ACCESS_TOKEN
+```
+
+Environment Variables (located in root)
+
+[.env](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/.env.example)
+[.env.local](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/.env.example)
 
 ## Updating Prisma
 
