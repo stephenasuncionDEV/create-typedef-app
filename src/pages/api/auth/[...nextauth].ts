@@ -1,10 +1,17 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
 import type { NextApiRequest, NextApiResponse } from "next";
-import type { NextAuthOptions, User, Account } from "next-auth";
-import type { JWTEncodeParams, JWTDecodeParams } from "next-auth/jwt";
 import type { AdapterUser } from "next-auth/adapters";
-import NextAuth from "next-auth";
-import { encode, decode } from "next-auth/jwt";
+import NextAuth, {
+  type NextAuthOptions,
+  type User,
+  type Account,
+} from "next-auth";
+import {
+  encode,
+  decode,
+  type JWTEncodeParams,
+  type JWTDecodeParams,
+} from "next-auth/jwt";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
