@@ -36,7 +36,7 @@ Environment Variables (located in root)
 
 ## Updating Prisma
 
-To extend any prisma models, Use `prisma generate` to generate a new schema.
+To extend any prisma models, Use `npx prisma generate` to generate a new schema.
 
 ## Deploy with Vercel
 
