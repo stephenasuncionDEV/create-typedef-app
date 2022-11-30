@@ -89,7 +89,7 @@ export const useAuthForm = (): AuthFormResult => {
 
       setIsLoggingIn(false);
 
-      router.push("/");
+      router.push("/dashboard");
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     } catch (err: any) {
       setIsLoggingIn(false);
