@@ -80,15 +80,14 @@ export const useAuthForm = (): AuthFormResult => {
         name,
         email,
         password,
-        callbackUrl: `http://localhost:3000/auth/${type}`,
+        callbackUrl: `/dashboard`,
         redirect: false,
       });
 
-      if (!resAuth || !resAuth?.ok)
-        throw new Error(resAuth?.error ?? "Something wrong occured.");
+      if (!resAuth) throw new Error("Cannot login at the moment.");
+      if (!resAuth.ok) throw new Error(resAuth.error);
 
       setIsLoggingIn(false);
-
       router.push("/dashboard");
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     } catch (err: any) {
