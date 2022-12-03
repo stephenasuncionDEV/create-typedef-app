@@ -1,4 +1,8 @@
-import type { ComponentStyleConfig } from "@chakra-ui/theme";
+import type {
+  ComponentStyleConfig,
+  ComponentDefaultProps,
+} from "@chakra-ui/theme";
+import { mode } from "@chakra-ui/theme-tools";
 
 const Button: ComponentStyleConfig = {
   baseStyle: () => ({
@@ -21,6 +25,20 @@ const Button: ComponentStyleConfig = {
         bg: "red.400",
         _disabled: {
           bg: "red.400",
+        },
+      },
+      color: "white",
+    }),
+    "outline-light": (props: ComponentDefaultProps) => ({
+      bg: "whiteAlpha.200",
+      border: mode(
+        "1px solid rgba(0, 0, 0, 0.16)",
+        "1px solid rgba(255, 255, 255, 0.16)",
+      )(props),
+      _hover: {
+        bg: "whiteAlpha.400",
+        _disabled: {
+          opacity: 0.6,
         },
       },
       color: "white",

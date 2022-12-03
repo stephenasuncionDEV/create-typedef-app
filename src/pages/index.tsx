@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           -app
         </Heading>
         <NextLink href="/auth/login" passHref>
-          <Button variant="outline">Get Started 🚀</Button>
+          <Button variant="outline-light">Get Started 🚀</Button>
         </NextLink>
       </VStack>
     </Center>
