@@ -7,12 +7,16 @@ const Home: NextPage = () => {
   return (
     <Center as="main" flexDir="column" minH="100vh">
       <Meta title="Website" />
-      <VStack spacing="2em">
+      <VStack spacing="2em" className="backlight" borderRadius="10px" p="2em">
         <Heading as="h1">
-          create-<span style={{ color: "rgb(117,63,229)" }}>typedef</span>-app
+          create-
+          <span style={{ color: "rgb(117,63,229)", boxShadow: "" }}>
+            typedef
+          </span>
+          -app
         </Heading>
         <NextLink href="/auth/login" passHref>
-          <Button variant="primary">Get Started 🚀</Button>
+          <Button variant="outline">Get Started 🚀</Button>
         </NextLink>
       </VStack>
     </Center>
