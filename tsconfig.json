@@ -14,6 +14,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
       "@/components/*": ["src/components/*"],
@@ -25,7 +27,8 @@
       "@/lib/*": ["src/lib/*"],
       "@/helpers/*": ["src/helpers/*"],
       "@/interfaces/*": ["src/interfaces/*"],
-      "@/types/*": ["types/*"]
+      "@/types/*": ["types/*"],
+      "@/graphql/*": ["src/graphql/*"]
     },
     "plugins": [
       {
