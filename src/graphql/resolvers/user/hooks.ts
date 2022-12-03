@@ -1,4 +1,3 @@
-import type { GraphQLHook } from "@/interfaces/index";
 import { useLazyQuery } from "@apollo/client";
 import { GET_USER_BY_ID, GET_USER_BY_EMAIL } from "./gql";
 import errorHandler from "@/helpers/errorHandler";
