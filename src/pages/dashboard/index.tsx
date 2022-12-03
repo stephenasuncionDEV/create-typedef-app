@@ -9,6 +9,7 @@ import {
   Heading,
   Tag,
   TagLabel,
+  HStack,
 } from "@chakra-ui/react";
 import { useAuthData } from "@/hooks/auth/useAuthData";
 import Meta from "@/components/Meta";
@@ -18,8 +19,13 @@ const Dashboard: NextPage = () => {
 
   if (isLoading || isUnAuthenticated) {
     return (
-      <Center as="main" flexDir="column" minH="100vh">
-        <Spinner />
+      <Center minH="100vh">
+        <HStack spacing=".75em">
+          <Spinner color="purple" size="lg" thickness="5px" />
+          <Heading as="h1" fontSize="10pt" fontWeight="500">
+            Loading..<span className="blink">.</span>
+          </Heading>
+        </HStack>
       </Center>
     );
   }
