@@ -9,6 +9,7 @@ export const useGetUserByID = () => {
     },
     onError: async (err) => {
       const msg = errorHandler(err);
+      console.error(msg);
     },
   });
 
@@ -22,6 +23,7 @@ export const useGetUserByEmail = () => {
     },
     onError: async (err) => {
       const msg = errorHandler(err);
+      console.error(msg);
     },
   });
 
