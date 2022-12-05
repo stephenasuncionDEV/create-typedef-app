@@ -1,6 +1,6 @@
-import { gql } from "@apollo/client";
+import { gql } from "@/graphql/types/gql";
 
-export const GET_USER_BY_ID = gql`
+export const GET_USER_BY_ID = gql(`
   query GetUserByID($id: ID!) {
     getUserByID(id: $id) {
       id
@@ -37,9 +37,9 @@ export const GET_USER_BY_ID = gql`
       updatedAt
     }
   }
-`;
+`);
 
-export const GET_USER_BY_EMAIL = gql`
+export const GET_USER_BY_EMAIL = gql(`
   query GetUserByEmail($email: String!) {
     getUserByEmail(email: $email) {
       id
@@ -76,4 +76,4 @@ export const GET_USER_BY_EMAIL = gql`
       updatedAt
     }
   }
-`;
+`);
