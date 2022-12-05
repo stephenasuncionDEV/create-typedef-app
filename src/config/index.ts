@@ -3,7 +3,6 @@ import production from "./prod";
 import test from "./test";
 
 export interface SingleConfig {
-  serverURL: string;
   clientURL: string;
 }
 
