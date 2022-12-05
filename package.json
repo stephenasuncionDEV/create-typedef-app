@@ -52,7 +52,7 @@
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
     "next": "13.0.6",
-    "next-auth": "^4.17.0",
+    "next-auth": "^4.18.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "uuidv4": "^6.2.13"
