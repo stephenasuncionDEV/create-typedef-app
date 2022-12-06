@@ -14,7 +14,7 @@ create-typedef-template is a full-stack web application template that contains t
 - [NextAuth.js](https://next-auth.js.org/)
 - [Prisma](https://www.prisma.io/)
 - [MongoDB](https://www.mongodb.com/)
-- [Apollo GraphQL](https://www.apollographql.com/) (Type-safe)
+- [tRPC](https://trpc.io/)
 
 ## How to use
 
