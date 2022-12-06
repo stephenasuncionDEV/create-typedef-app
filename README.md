@@ -18,13 +18,16 @@ create-typedef-template is a full-stack web application template that contains t
 
 ## Branches
 
-`_tRPC` - branch that utilizes tRPC in place of Apollo GraphQL for the handling of RPC (remote procedure call) requests.
+`_ApolloGQL` (default) - branch that uses Apollo GraphQL for the handling of RPC (remote procedure call) requests.
+`_tRPC` - branch that utilizes tRPC in place of Apollo GraphQL for the handling of RPC requests.
 
 > Note: Read [CONTRIBUTING.md](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
 ## How to use
 
 Go to [create-typedef-app repository](https://github.com/stephenasuncionDEV/create-typedef-app), and click `Use this template`.
+
+> Note: If you want to use one of the branches just clone it and merge it to main locally.
 
 ### Configurations
 
