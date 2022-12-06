@@ -14,7 +14,13 @@ create-typedef-template is a full-stack web application template that contains t
 - [NextAuth.js](https://next-auth.js.org/)
 - [Prisma](https://www.prisma.io/)
 - [MongoDB](https://www.mongodb.com/)
-- [tRPC](https://trpc.io/)
+- [Apollo GraphQL](https://www.apollographql.com/) (Type-safe) / or / [tRPC](https://trpc.io/) 
+
+## Branches
+
+`_tRPC` - branch that utilizes tRPC in place of Apollo GraphQL for the handling of RPC (remote procedure call) requests.
+
+> Note: Read [CONTRIBUTING.md](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
 ## How to use
 
