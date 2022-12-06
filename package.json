@@ -32,8 +32,8 @@
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true yarn build",
     "node:switch": "for /f usebackq %i in (`type .nvmrc`) do nvm use %i",
-    "graphql:compile": "graphql-codegen",
-    "graphql:watch": "graphql-codegen -w",
+    "graphql:compile": "graphql-codegen -c src/codegen.ts",
+    "graphql:watch": "graphql-codegen -w -c src/codegen.ts",
     "start": "next start"
   },
   "dependencies": {
