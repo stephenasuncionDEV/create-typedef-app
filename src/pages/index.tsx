@@ -10,9 +10,7 @@ const Home: NextPage = () => {
       <VStack spacing="2em" className="backlight" borderRadius="10px" p="2em">
         <Heading as="h1">
           create-
-          <span style={{ color: "rgb(117,63,229)", boxShadow: "" }}>
-            typedef
-          </span>
+          <span style={{ color: "rgb(117,63,229)" }}>typedef</span>
           -app
         </Heading>
         <NextLink href="/auth/login" passHref>

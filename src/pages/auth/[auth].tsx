@@ -84,7 +84,10 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
                   <div key={provider.name} style={{ minWidth: "135.73px" }}>
                     <Button
                       onClick={() =>
-                        signIn(provider.id, { callbackUrl: "/dashboard" })
+                        signIn(provider.id, {
+                          callbackUrl: "/dashboard",
+                          redirect: true,
+                        })
                       }
                       leftIcon={
                         {

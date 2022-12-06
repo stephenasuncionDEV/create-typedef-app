@@ -52,9 +52,18 @@ export async function middleware(req: NextRequest) {
       );
 
       const sessionData = (await session.json()) as Session;
+      if (!sessionData) {
+        return NextResponse.redirect(new URL("/auth/login", req.url));
+      }
+
       const isVerified = sessionToken === sessionData.sessionToken;
 
-      if (isVerified && repelRoutes.includes(route) && authCookie) {
+      if (
+        repelRoutes.includes(route) &&
+        authCookie &&
+        sessionData &&
+        isVerified
+      ) {
         return NextResponse.redirect(new URL("/dashboard", req.url));
       }
     }

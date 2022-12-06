@@ -15,8 +15,8 @@ import {
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import PrismaAdapter from "@/lib/prismaAdapter";
-import prisma from "@/lib/prismadb";
+import PrismaAdapter from "@/server/db/adapter";
+import prisma from "@/server/db/client";
 import { encrypt, decrypt } from "@/helpers/index";
 import { setCookie, getCookie } from "cookies-next";
 import { randomUUID } from "crypto";
@@ -33,7 +33,7 @@ export interface SessionCallback {
   user: User | AdapterUser;
 }
 
-export const AuthOption = (
+export const authOptions = (
   req: NextApiRequest,
   res: NextApiResponse,
 ): NextAuthOptions => {
@@ -220,6 +220,6 @@ export default function auth(
   req: NextApiRequest,
   res: NextApiResponse,
 ): NextAuthOptions {
-  const option = AuthOption(req, res);
+  const option = authOptions(req, res);
   return NextAuth(req, res, option);
 }
