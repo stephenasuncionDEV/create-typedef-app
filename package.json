@@ -40,7 +40,7 @@
     "@apollo/client": "^3.7.1",
     "@apollo/server": "^4.2.2",
     "@as-integrations/next": "^1.2.0",
-    "@chakra-ui/react": "^2.4.2",
+    "@chakra-ui/react": "^2.4.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@prisma/client": "^4.7.1",
