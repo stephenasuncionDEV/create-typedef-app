@@ -39,9 +39,8 @@ DOCKER_HUB_REPOSITORY
 DOCKER_HUB_ACCESS_TOKEN
 ```
 
-Environment Variables (located in root)
+Environment Variable Example
 
-- [.env](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/.env.example)
 - [.env.local](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/.env.local.example)
 
 ## Updating Prisma
