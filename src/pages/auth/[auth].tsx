@@ -21,6 +21,7 @@ import {
   FormErrorMessage,
   InputGroup,
   InputRightElement,
+  Link,
 } from "@chakra-ui/react";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaGoogle } from "@react-icons/all-files/fa/FaGoogle";
@@ -204,23 +205,13 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
             {isRegister && (
               <Text fontSize="9pt" mt="1em" variant="subtle" textAlign="center">
                 By continuing you agree to our{" "}
-                <NextLink
-                  href="/about/terms"
-                  style={{ color: "#3182ce" }}
-                  shallow
-                  passHref
-                >
+                <Link href="/about/terms" variant="link" isExternal>
                   Terms of Service
-                </NextLink>{" "}
+                </Link>{" "}
                 and{" "}
-                <NextLink
-                  href="/about/terms"
-                  style={{ color: "#3182ce" }}
-                  shallow
-                  passHref
-                >
+                <Link href="/about/privacy" variant="link" isExternal>
                   Privacy Policy
-                </NextLink>
+                </Link>
                 .
               </Text>
             )}
