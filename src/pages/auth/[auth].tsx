@@ -65,15 +65,17 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
             </>
           )}
           <Flex flexDir="column" alignItems="center" maxW="288px">
-            <NextImage
-              src="/assets/images/logo.svg"
-              alt="Template Logo"
-              width={50}
-              height={50}
-              quality={100}
-              blurDataURL="https://via.placeholder.com/300/26"
-              placeholder="blur"
-            />
+            <NextLink href="/">
+              <NextImage
+                src="/assets/images/logo.svg"
+                alt="Template Logo"
+                width={50}
+                height={50}
+                quality={100}
+                blurDataURL="https://via.placeholder.com/300/26"
+                placeholder="blur"
+              />
+            </NextLink>
             <Heading as="h1" fontSize="18pt" mt="1em">
               {isLogin ? "Login to Typedef" : "Create your account"}
             </Heading>
