@@ -40,7 +40,7 @@ export default function Terms() {
             >
               SCOPE OF SERVICES
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               {config.businessName} provides the following services:
               {config.services}. {config.businessName} reserves the right to
               change, suspend, or discontinue any aspect of the Services at any
@@ -56,7 +56,7 @@ export default function Terms() {
             >
               USER ACCOUNTS
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               In order to use certain features of the Services, you may need to
               create an account. You are responsible for keeping your account
               login information confidential and are fully responsible for all
@@ -74,7 +74,7 @@ export default function Terms() {
             >
               USER CONDUCT
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               You agree to use the Services only for lawful purposes and in
               accordance with these Terms. You agree not to use the Services:
             </Text>
@@ -106,7 +106,7 @@ export default function Terms() {
             >
               INTELLECTUAL PROPERTY
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               The Services and all content and materials included on the
               Services, including, but not limited to, text, graphics, logos,
               images, and software, are the property of {config.businessName} or
@@ -126,7 +126,7 @@ export default function Terms() {
             >
               DISCLAIMER OF WARRANTIES
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               THE SERVICES ARE PROVIDED &quot;AS IS&quot; AND &quot;AS
               AVAILABLE&quot; WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR
               IMPLIED. {config.businessName} DISCLAIMS ALL WARRANTIES,
@@ -148,7 +148,7 @@ export default function Terms() {
             >
               LIMITATION OF LIABILITY
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               IN NO EVENT WILL {config.businessName} BE LIABLE FOR ANY INDIRECT,
               CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE
               DAMAGES, INCLUDING, BUT NOT LIMITED TO, DAMAGES FOR LOSS OF
@@ -166,7 +166,7 @@ export default function Terms() {
             >
               INDEMNIFICATION
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               You agree to indemnify, defend, and hold harmless{" "}
               {config.businessName}
               and its affiliates, officers, agents, and employees from and
@@ -187,7 +187,7 @@ export default function Terms() {
             >
               LAW AND RESOLUTION
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               These Terms and your access to and use of the Services will be
               governed by and construed in accordance with the laws of the State
               of {config.state}, without giving effect to any principles of
@@ -207,7 +207,7 @@ export default function Terms() {
             >
               MISCELLANEOUS
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               These Terms constitute the entire agreement between you and
               {config.businessName} regarding the use of the Services. If any
               provision of these Terms is found to be invalid or unenforceable,

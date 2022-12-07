@@ -36,7 +36,7 @@ export default function Privacy() {
             >
               INFORMATION COLLECTION
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               We collect personal information from users of the Website when it
               is voluntarily submitted to us. This may include information such
               as names, addresses, and email addresses. We also collect
@@ -53,7 +53,7 @@ export default function Privacy() {
             >
               USE OF COLLECTED INFORMATION
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               The personal information we collect is used to improve the Website
               and to personalize users&apos; experiences. We may also use the
               collected information to send marketing communications to users.
@@ -68,7 +68,7 @@ export default function Privacy() {
             >
               SHARING OF COLLECTED INFORMATION
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               We may share the collected information with third parties who
               assist with the operation of the Website, such as service
               providers who host the Website or process payment transactions. We
@@ -85,7 +85,7 @@ export default function Privacy() {
             >
               DATA SECURITY
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               We take reasonable measures to protect the collected information
               from unauthorized access or disclosure. However, we cannot
               guarantee the security of the collected information, and users
@@ -101,7 +101,7 @@ export default function Privacy() {
             >
               DATA RETENTION
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               We will retain the collected information for as long as necessary
               to fulfill the purposes for which it was collected, or as required
               by law.
@@ -116,7 +116,7 @@ export default function Privacy() {
             >
               USER RIGHTS
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               Users have the right to access, correct, or delete their personal
               information at any time. To exercise these rights, please contact
               us at {config.contactInformation}.
@@ -131,7 +131,7 @@ export default function Privacy() {
             >
               CHANGES TO THE PRIVACY POLICY
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               We may update this privacy policy from time to time, and will post
               any changes on this page. We encourage users to review the privacy
               policy regularly for any updates or changes. If we make material
@@ -148,7 +148,7 @@ export default function Privacy() {
             >
               CONTACT INFORMATION
             </Heading>
-            <Text mt=".5em">
+            <Text mt=".5em" ml="1em">
               If you have any questions or concerns about this privacy policy,
               please contact us at {config.contactInformation}.
             </Text>
