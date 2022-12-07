@@ -21,6 +21,15 @@ const nextConfig = withBundleAnalyzer({
   images: {
     domains: [""],
   },
+  async redirects() {
+    return [
+      {
+        source: "/auth",
+        destination: "/auth/login",
+        permanent: true,
+      },
+    ];
+  },
 });
 
 module.exports = nextConfig;
