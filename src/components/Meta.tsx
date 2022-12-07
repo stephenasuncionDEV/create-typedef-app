@@ -9,11 +9,12 @@ const Meta: FC<MetaProps> = ({ title }) => {
   return (
     <Head>
       <title>{title}</title>
+      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="title" content={title} />
       <meta name="description" content="DESCRIPTION" />
       <meta name="keywords" content="KEYWORDS" />
+      <meta name="author" content="YOUR_NAME" />
       <meta name="robots" content="index, follow" />
-      <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
       <meta name="language" content="en" />
       <meta name="theme-color" content="#348CD4" />
 
