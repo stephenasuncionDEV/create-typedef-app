@@ -21,15 +21,17 @@ const Meta: FC<MetaProps> = ({ title }) => {
       <meta property="og:type" content="website" />
       <meta property="og:url" content="SITE_URL" />
       <meta property="og:title" content={title} />
-      <meta property="og:description" content="DESCRIPTION" />
-      <meta property="og:image" content="/assets/images/logo.png" />
       <meta property="og:site_name" content="SITE_NAME" />
+      <meta property="og:description" content="DESCRIPTION" />
+      <meta property="og:image" content="/api/og?size=1200x630" />
+      <meta property="og:image:alt" content="IMAGE_DESCRIPTION" />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="SITE_URL" />
       <meta property="twitter:title" content={title} />
       <meta property="twitter:description" content="DESCRIPTION" />
-      <meta property="twitter:image" content="/assets/images/logo.png" />
+      <meta property="twitter:image" content="/api/og?size=1200x630" />
+      <meta property="twitter:image:alt" content="IMAGE_DESCRIPTION" />
 
       <meta name="msapplication-config" content="/browserconfig.xml" />
 
