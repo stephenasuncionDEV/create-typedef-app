@@ -28,6 +28,11 @@ const nextConfig = withBundleAnalyzer({
         destination: "/auth/login",
         permanent: true,
       },
+      {
+        source: "/about",
+        destination: "/about/terms",
+        permanent: true,
+      },
     ];
   },
 });
