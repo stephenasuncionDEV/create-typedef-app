@@ -52,10 +52,16 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
         <Wrap spacing="8em" align="center">
           {isRegister && (
             <>
-              <Flex flexDir="column" alignItems="center">
-                <Heading as="h2" fontSize="14pt">
-                  Advertisement Here
-                </Heading>
+              <Flex flexDir="column" alignItems="center" opacity=".1">
+                <NextImage
+                  src="/assets/images/logo.svg"
+                  alt="Template Logo"
+                  width={300}
+                  height={300}
+                  quality={100}
+                  blurDataURL="https://via.placeholder.com/300/300"
+                  placeholder="blur"
+                />
               </Flex>
               <Divider
                 orientation="vertical"
