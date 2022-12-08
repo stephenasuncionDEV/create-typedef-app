@@ -1,4 +1,4 @@
-import type { DefaultSession, DefaultUser } from "next-auth";
+import type { DefaultSession } from "next-auth";
 import { ClientSafeProvider } from "next-auth/react";
 
 declare module "next-auth/providers" {
@@ -15,10 +15,10 @@ declare module "next-auth" {
   interface Session {
     user?: {
       id: string;
-      isStaff?: boolean;
+      isStaff?: boolean | null;
     } & DefaultSession["user"];
   }
-  interface User extends DefaultUser {
-    isStaff?: boolean;
+  interface DefaultUser {
+    isStaff?: boolean | null;
   }
 }
