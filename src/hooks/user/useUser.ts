@@ -4,20 +4,20 @@ import { useToast } from "@chakra-ui/react";
 import errorHandler from "@/helpers/errorHandler";
 import { signOut } from "next-auth/react";
 
-export interface UseUserProps {
-  DeleteUser: (id: string | undefined) => Promise<void>;
+export interface UseUserRes {
+  deleteUser: (id: string | undefined) => Promise<void>;
 }
 
-export const useUser = (): UseUserProps => {
+export const useUser = (): UseUserRes => {
   const toast = useToast({
     title: "Error",
     status: "error",
     duration: 3000,
     isClosable: true,
   });
-  const _DeleteUser = trpc.auth.deleteUser.useMutation();
+  const _DeleteUser = trpc.user.deleteUser.useMutation();
 
-  const DeleteUser = async (id: string | undefined) => {
+  const deleteUser = async (id: string | undefined) => {
     try {
       if (!id) throw new Error("Cannot delete user at the moment.");
 
@@ -36,6 +36,6 @@ export const useUser = (): UseUserProps => {
   };
 
   return {
-    DeleteUser,
+    deleteUser,
   };
 };

@@ -14,7 +14,8 @@ create-typedef-template is a full-stack web application template inspired by cre
 - [NextAuth.js](https://next-auth.js.org/)
 - [Prisma](https://www.prisma.io/)
 - [MongoDB](https://www.mongodb.com/)
-- [Apollo GraphQL](https://www.apollographql.com/) (Type-safe) / or / [tRPC](https://trpc.io/) 
+- [Redux](https://redux.js.org/)
+- [tRPC](https://trpc.io/) / or / [Apollo GraphQL](https://www.apollographql.com/) (Type-safe)
 
 ## Branches
 
@@ -47,7 +48,11 @@ Environment Variable Example
 
 To extend any prisma models, run `yarn prisma` to generate a new schema.
 
+> Note: You may need to reload your IDE for changes to occur.
+
 ## Updating GraphQL Types
+
+Ignore this if you are using `tRPC`.
 
 To updated grapql types, run `yarn graphql:compile` or `yarn graphql:watch`. Files will get generated to `@/graphql/types`.
 

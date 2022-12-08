@@ -41,6 +41,7 @@
     "@emotion/styled": "^11",
     "@prisma/client": "^4.7.1",
     "@react-icons/all-files": "^4.1.0",
+    "@reduxjs/toolkit": "^1.9.1",
     "@tanstack/react-query": "^4.19.1",
     "@trpc/client": "^10.4.3",
     "@trpc/next": "^10.4.3",
@@ -55,6 +56,7 @@
     "next-sitemap": "^3.1.32",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-redux": "^8.0.5",
     "superjson": "^1.12.0",
     "uuidv4": "^6.2.13",
     "zod": "^3.19.1"
