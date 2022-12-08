@@ -2,7 +2,7 @@
 import { router, protectedProcedure } from "../trpc";
 import { z } from "zod";
 
-export const authRouter = router({
+export const userRouter = router({
   getUserById: protectedProcedure
     .input(z.object({ id: z.string() }).nullish())
     .query(({ ctx, input }) => {
@@ -19,4 +19,4 @@ export const authRouter = router({
     }),
 });
 
-export type AuthRouter = typeof authRouter;
+export type UserRouter = typeof userRouter;
