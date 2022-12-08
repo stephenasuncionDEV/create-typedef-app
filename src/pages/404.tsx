@@ -15,7 +15,7 @@ const Error: NextPage = () => {
           width={50}
           height={50}
           quality={100}
-          blurDataURL="https://via.placeholder.com/300/26"
+          blurDataURL="https://via.placeholder.com/50/50"
           placeholder="blur"
         />
         <Heading as="h1">404</Heading>
