@@ -45,7 +45,7 @@ Environment Variable Example
 
 ## Updating Prisma
 
-To extend any prisma models, run `npx prisma generate` to generate a new schema.
+To extend any prisma models, run `yarn prisma` to generate a new schema.
 
 ## Updating GraphQL Types
 

@@ -23,7 +23,6 @@
   "scripts": {
     "dev": "next dev",
     "dev:no-cache": "rm -rf .next/cache && yarn dev",
-    "dev:prisma": "npx prisma generate",
     "lint": "next lint",
     "lint:types": "tsc --pretty --noEmit",
     "lint:format": "prettier --check .",
@@ -32,6 +31,7 @@
     "build": "next build",
     "build:analyze": "cross-env ANALYZE=true yarn build",
     "node:switch": "for /f usebackq %i in (`type .nvmrc`) do nvm use %i",
+    "prisma": "npx prisma generate",
     "postbuild": "next-sitemap",
     "start": "next start"
   },
