@@ -2,7 +2,7 @@ import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
-import errorHandler from "src/common/errorHandler";
+import errorHandler from "@/common/errorHandler";
 
 export interface DefaultAuthForm {
   name?: string;
