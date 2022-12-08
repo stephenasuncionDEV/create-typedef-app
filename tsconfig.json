@@ -21,7 +21,6 @@
       "@/components/*": ["src/components/*"],
       "@/theme/*": ["src/theme/*"],
       "@/styles/*": ["src/styles/*"],
-      "@/providers/*": ["src/providers/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/config/*": ["src/config/*"],
       "@/helpers/*": ["src/helpers/*"],
