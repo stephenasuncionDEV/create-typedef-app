@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { trpc } from "@/helpers/lib/trpc";
+import { trpc } from "@/server/trpc";
 import { useToast } from "@chakra-ui/react";
-import errorHandler from "@/helpers/errorHandler";
 import { signOut } from "next-auth/react";
+import errorHandler from "@/common/errorHandler";
 
 export interface UseUserRes {
   deleteUser: (id: string | undefined) => Promise<void>;
