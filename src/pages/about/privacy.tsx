@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import { Flex, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import Meta from "@/components/Meta";
 
@@ -6,7 +7,7 @@ const config = {
   contactInformation: "mywebsite@example.com",
 };
 
-export default function Privacy() {
+const Privacy: NextPage = () => {
   return (
     <Center>
       <Meta title="Privacy Policy" />
@@ -157,4 +158,6 @@ export default function Privacy() {
       </Flex>
     </Center>
   );
-}
+};
+
+export default Privacy;

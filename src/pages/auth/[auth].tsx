@@ -1,4 +1,5 @@
-import { FC, useState, useRef, MutableRefObject } from "react";
+import type { NextPage } from "next";
+import { useState, useRef, MutableRefObject } from "react";
 import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import NextImage from "next/image";
@@ -28,11 +29,11 @@ import { FaGoogle } from "@react-icons/all-files/fa/FaGoogle";
 import { useAuthForm } from "@/hooks/auth/useAuthForm";
 import Meta from "@/components/Meta";
 
-export interface SignInProps {
+export interface AuthProps {
   providers: Record<LiteralUnion<AvailableProviderType>, AvailableSafeProvider>;
 }
 
-const SignIn: FC<SignInProps> = ({ providers }) => {
+const Auth: NextPage<AuthProps> = ({ providers }) => {
   const router = useRouter();
   const {
     query: { auth },
@@ -79,7 +80,7 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
                 width={50}
                 height={50}
                 quality={100}
-                blurDataURL="https://via.placeholder.com/300/26"
+                blurDataURL="https://via.placeholder.com/50/50"
                 placeholder="blur"
               />
             </NextLink>
@@ -242,4 +243,4 @@ export const getServerSideProps = async (
   };
 };
 
-export default SignIn;
+export default Auth;

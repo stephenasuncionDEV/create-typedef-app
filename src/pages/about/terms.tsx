@@ -1,3 +1,4 @@
+import type { NextPage } from "next";
 import { Flex, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import Meta from "@/components/Meta";
 
@@ -9,7 +10,7 @@ const config = {
   arbitrationLocation: "San Francisco, California",
 };
 
-export default function Terms() {
+const Terms: NextPage = () => {
   return (
     <Center>
       <Meta title="Terms of Service" />
@@ -228,4 +229,6 @@ export default function Terms() {
       </Flex>
     </Center>
   );
-}
+};
+
+export default Terms;
