@@ -21,6 +21,7 @@ import {
   FormErrorMessage,
   InputGroup,
   InputRightElement,
+  Link,
 } from "@chakra-ui/react";
 import { FaGithub } from "@react-icons/all-files/fa/FaGithub";
 import { FaGoogle } from "@react-icons/all-files/fa/FaGoogle";
@@ -52,10 +53,16 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
         <Wrap spacing="8em" align="center">
           {isRegister && (
             <>
-              <Flex flexDir="column" alignItems="center">
-                <Heading as="h2" fontSize="14pt">
-                  Advertisement Here
-                </Heading>
+              <Flex flexDir="column" alignItems="center" opacity=".1">
+                <NextImage
+                  src="/assets/images/logo.svg"
+                  alt="Template Logo"
+                  width={300}
+                  height={300}
+                  quality={100}
+                  blurDataURL="https://via.placeholder.com/300/300"
+                  placeholder="blur"
+                />
               </Flex>
               <Divider
                 orientation="vertical"
@@ -65,15 +72,17 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
             </>
           )}
           <Flex flexDir="column" alignItems="center" maxW="288px">
-            <NextImage
-              src="/assets/images/logo.svg"
-              alt="Template Logo"
-              width={50}
-              height={50}
-              quality={100}
-              blurDataURL="https://via.placeholder.com/300/26"
-              placeholder="blur"
-            />
+            <NextLink href="/">
+              <NextImage
+                src="/assets/images/logo.svg"
+                alt="Template Logo"
+                width={50}
+                height={50}
+                quality={100}
+                blurDataURL="https://via.placeholder.com/300/26"
+                placeholder="blur"
+              />
+            </NextLink>
             <Heading as="h1" fontSize="18pt" mt="1em">
               {isLogin ? "Login to Typedef" : "Create your account"}
             </Heading>
@@ -84,7 +93,10 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
                   <div key={provider.name} style={{ minWidth: "135.73px" }}>
                     <Button
                       onClick={() =>
-                        signIn(provider.id, { callbackUrl: "/dashboard" })
+                        signIn(provider.id, {
+                          callbackUrl: "/dashboard",
+                          redirect: true,
+                        })
                       }
                       leftIcon={
                         {
@@ -193,23 +205,13 @@ const SignIn: FC<SignInProps> = ({ providers }) => {
             {isRegister && (
               <Text fontSize="9pt" mt="1em" variant="subtle" textAlign="center">
                 By continuing you agree to our{" "}
-                <NextLink
-                  href="/about/terms"
-                  style={{ color: "#3182ce" }}
-                  shallow
-                  passHref
-                >
+                <Link href="/about/terms" variant="link" isExternal>
                   Terms of Service
-                </NextLink>{" "}
+                </Link>{" "}
                 and{" "}
-                <NextLink
-                  href="/about/terms"
-                  style={{ color: "#3182ce" }}
-                  shallow
-                  passHref
-                >
+                <Link href="/about/privacy" variant="link" isExternal>
                   Privacy Policy
-                </NextLink>
+                </Link>
                 .
               </Text>
             )}

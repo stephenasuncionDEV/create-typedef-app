@@ -4,9 +4,9 @@
 
 ![CodeQl Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/codeql-analysis.yml/badge.svg) ![DockerHub Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/docker-deployment.yml/badge.svg)
 
-> Tech stack template by Stephen Asuncion.
+> My preferred version of create-t3-app
 
-create-typedef-template is a full-stack web application template that contains the following technology stack:
+create-typedef-template is a full-stack web application template inspired from create-t3-app that contains the following technology stack:
 
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://typescriptlang.org/)
@@ -18,8 +18,8 @@ create-typedef-template is a full-stack web application template that contains t
 
 ## Branches
 
-`_ApolloGQL` (default) - branch that uses Apollo GraphQL for the handling of RPC (remote procedure call) requests.
-`_tRPC` - branch that utilizes tRPC in place of Apollo GraphQL for the handling of RPC requests.
+`_tRPC` (default) - branch that utilizes tRPC in place of Apollo GraphQL for the handling of RPC requests.
+`_ApolloGQL` - branch that uses Apollo GraphQL for the handling of RPC (remote procedure call) requests.
 
 > Note: Read [CONTRIBUTING.md](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
@@ -39,9 +39,8 @@ DOCKER_HUB_REPOSITORY
 DOCKER_HUB_ACCESS_TOKEN
 ```
 
-Environment Variables (located in root)
+Environment Variable Example
 
-- [.env](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/.env.example)
 - [.env.local](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/.env.local.example)
 
 ## Updating Prisma

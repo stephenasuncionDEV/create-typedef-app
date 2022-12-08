@@ -24,11 +24,10 @@
       "@/providers/*": ["src/providers/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/config/*": ["src/config/*"],
-      "@/lib/*": ["src/lib/*"],
       "@/helpers/*": ["src/helpers/*"],
+      "@/server/*": ["src/server/*"],
       "@/interfaces/*": ["src/interfaces/*"],
-      "@/types/*": ["types/*"],
-      "@/graphql/*": ["src/graphql/*"]
+      "@/types/*": ["src/types/*"]
     },
     "plugins": [
       {

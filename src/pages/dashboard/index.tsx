@@ -13,15 +13,17 @@ import {
 } from "@chakra-ui/react";
 import { useAuthData } from "@/hooks/auth/useAuthData";
 import Meta from "@/components/Meta";
+import { useUser } from "@/hooks/user/useUser";
 
 const Dashboard: NextPage = () => {
   const { session, isLoading, isUnAuthenticated } = useAuthData();
+  const { DeleteUser } = useUser();
 
   if (isLoading || isUnAuthenticated) {
     return (
       <Center minH="100vh">
         <HStack spacing=".75em">
-          <Spinner color="purple" size="lg" thickness="5px" />
+          <Spinner color="#753FE5" size="lg" thickness="5px" />
           <Heading as="h1" fontSize="10pt" fontWeight="500">
             Loading..<span className="blink">.</span>
           </Heading>
@@ -52,9 +54,18 @@ const Dashboard: NextPage = () => {
         <Tag mt="1em" size="sm">
           <TagLabel>{session?.user?.email}</TagLabel>
         </Tag>
-        <Button variant="primary" onClick={() => signOut()} size="sm" mt="2em">
-          Logout
-        </Button>
+        <HStack mt="2em">
+          <Button
+            variant="danger"
+            onClick={() => DeleteUser(session?.user?.id)}
+            size="sm"
+          >
+            Delete
+          </Button>
+          <Button variant="primary" onClick={() => signOut()} size="sm">
+            Logout
+          </Button>
+        </HStack>
       </Center>
     </Center>
   );
