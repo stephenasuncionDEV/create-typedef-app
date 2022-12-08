@@ -17,7 +17,7 @@ import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import PrismaAdapter from "@/server/db/adapter";
 import prisma from "@/server/db/client";
-import { encrypt, decrypt } from "@/helpers/index";
+import { encrypt, decrypt } from "@/common/utils";
 import { setCookie, getCookie } from "cookies-next";
 import { randomUUID } from "crypto";
 import { uuid } from "uuidv4";
@@ -37,7 +37,7 @@ export const authOptions = (
   req: NextApiRequest,
   res: NextApiResponse,
 ): NextAuthOptions => {
-  const isLogin = req.body.callbackUrl?.includes("login") ?? false;
+  const isLogin = req.headers.referer?.includes("login") ?? false;
 
   return {
     providers: [
