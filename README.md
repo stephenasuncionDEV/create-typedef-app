@@ -4,7 +4,7 @@
 
 ![CodeQl Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/codeql-analysis.yml/badge.svg) ![DockerHub Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/docker-deployment.yml/badge.svg)
 
-> Tech stack template by Stephen Asuncion.
+> My preferred version of create-t3-app
 
 create-typedef-template is a full-stack web application template inspired from create-t3-app that contains the following technology stack:
 
