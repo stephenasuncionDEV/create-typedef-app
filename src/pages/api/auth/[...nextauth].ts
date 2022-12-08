@@ -112,6 +112,7 @@ export const authOptions = (
                   "+",
                 )}`,
                 password: encrypt(password),
+                isStaff: false,
                 emailVerified: null,
               },
             });
@@ -179,6 +180,7 @@ export const authOptions = (
       async session({ session, user }: SessionCallback) {
         if (session.user) {
           session.user.id = user.id;
+          session.user.isStaff = user.isStaff;
         }
         return session;
       },
