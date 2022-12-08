@@ -1,7 +1,9 @@
 import type { AppProps } from "next/app";
+import { Provider as ReduxProvider } from "react-redux";
 import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { trpc } from "@/helpers/lib/trpc";
+import store from "@/store/index";
 import theme from "@/theme/index";
 import "@/styles/globals.scss";
 
@@ -11,9 +13,11 @@ const MyApp = ({
 }: AppProps) => {
   return (
     <SessionProvider session={session}>
-      <ChakraProvider theme={theme}>
-        <Component {...pageProps} />
-      </ChakraProvider>
+      <ReduxProvider store={store}>
+        <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </ReduxProvider>
     </SessionProvider>
   );
 };

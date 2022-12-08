@@ -25,6 +25,7 @@
       "@/config/*": ["src/config/*"],
       "@/helpers/*": ["src/helpers/*"],
       "@/server/*": ["src/server/*"],
+      "@/store/*": ["src/store/*"],
       "@/interfaces/*": ["src/interfaces/*"],
       "@/types/*": ["src/types/*"]
     },
