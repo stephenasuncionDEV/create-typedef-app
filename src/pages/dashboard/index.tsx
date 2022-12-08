@@ -11,13 +11,13 @@ import {
   TagLabel,
   HStack,
 } from "@chakra-ui/react";
-import { useAuthData } from "@/hooks/auth/useAuthData";
-import Meta from "@/components/Meta";
+import { useAuth } from "@/hooks/auth/useAuth";
 import { useUser } from "@/hooks/user/useUser";
+import Meta from "@/components/Meta";
 
 const Dashboard: NextPage = () => {
-  const { session, isLoading, isUnAuthenticated } = useAuthData();
-  const { DeleteUser } = useUser();
+  const { session, isLoading, isUnAuthenticated } = useAuth();
+  const { deleteUser } = useUser();
 
   if (isLoading || isUnAuthenticated) {
     return (
@@ -42,7 +42,7 @@ const Dashboard: NextPage = () => {
           width={50}
           height={50}
           quality={100}
-          blurDataURL="https://via.placeholder.com/300/26"
+          blurDataURL="https://via.placeholder.com/50/50"
           placeholder="blur"
         />
         <Heading as="h1" fontSize="22pt">
@@ -57,7 +57,7 @@ const Dashboard: NextPage = () => {
         <HStack mt="2em">
           <Button
             variant="danger"
-            onClick={() => DeleteUser(session?.user?.id)}
+            onClick={() => deleteUser(session?.user?.id)}
             size="sm"
           >
             Delete
