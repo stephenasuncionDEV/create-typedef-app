@@ -6,7 +6,7 @@
 
 > My preferred version of create-t3-app
 
-create-typedef-template is a full-stack web application template inspired by create-t3-app that contains the following technology stack:
+create-typedef-template is a full-stack web application template inspired by [create-t3-app](https://github.com/t3-oss/create-t3-app) that contains the following technology stack:
 
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://typescriptlang.org/)
