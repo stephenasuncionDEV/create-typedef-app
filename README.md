@@ -47,6 +47,8 @@ Environment Variable Example
 
 To extend any prisma models, run `yarn prisma` to generate a new schema.
 
+> Note: You may need to reload your IDE for changes to occur.
+
 ## Updating GraphQL Types
 
 To updated grapql types, run `yarn graphql:compile` or `yarn graphql:watch`. Files will get generated to `@/graphql/types`.
