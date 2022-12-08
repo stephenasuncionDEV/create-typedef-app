@@ -4,7 +4,7 @@ import { GetServerSidePropsContext } from "next";
 import { useRouter } from "next/router";
 import NextImage from "next/image";
 import NextLink from "next/link";
-import { getProviders, signIn } from "next-auth/react";
+import { getProviders } from "next-auth/react";
 import { AvailableProviderType } from "next-auth/providers";
 import { LiteralUnion, AvailableSafeProvider } from "next-auth/react";
 import {
@@ -45,7 +45,8 @@ const Auth: NextPage<AuthProps> = ({ providers }) => {
   const emailInput = useRef() as MutableRefObject<HTMLInputElement>;
   const passwordInput = useRef() as MutableRefObject<HTMLInputElement>;
   const [showPass, setShowPass] = useState(false);
-  const { authenticate, errors } = useAuthForm();
+  const { authenticateProvider, authenticate, errors, isLoggingIn } =
+    useAuthForm();
 
   return (
     <Center minH="100vh">
@@ -93,12 +94,7 @@ const Auth: NextPage<AuthProps> = ({ providers }) => {
                 .map((provider) => (
                   <div key={provider.name} style={{ minWidth: "135.73px" }}>
                     <Button
-                      onClick={() =>
-                        signIn(provider.id, {
-                          callbackUrl: "/dashboard",
-                          redirect: true,
-                        })
-                      }
+                      onClick={() => authenticateProvider(provider.id)}
                       leftIcon={
                         {
                           github: <FaGithub fontSize="16pt" />,
@@ -109,6 +105,7 @@ const Auth: NextPage<AuthProps> = ({ providers }) => {
                       gap=".75em"
                       p="1.5em"
                       variant="outline"
+                      disabled={isLoggingIn}
                     >
                       <span style={{ fontSize: "10pt" }}>{provider.name}</span>
                     </Button>

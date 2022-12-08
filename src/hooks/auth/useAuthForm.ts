@@ -2,7 +2,7 @@ import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
-import errorHandler from "@/helpers/errorHandler";
+import errorHandler from "src/common/errorHandler";
 
 export interface DefaultAuthForm {
   name?: string;
@@ -16,12 +16,14 @@ export interface AuthenticateProps extends DefaultAuthForm {
 
 export type AuthFormErrors = DefaultAuthForm;
 
-export type AuthenticateType = (param: AuthenticateProps) => void;
+export type AuthenticateType = (param: AuthenticateProps) => Promise<void>;
+export type AuthenticateProviderType = (providerId: string) => Promise<void>;
 
 export interface AuthFormResult {
   isLoggingIn: boolean;
   setIsLoggingIn: Dispatch<SetStateAction<boolean>>;
   authenticate: AuthenticateType;
+  authenticateProvider: AuthenticateProviderType;
   errors: AuthFormErrors;
   setErrors: Dispatch<SetStateAction<AuthFormErrors>>;
 }
@@ -40,6 +42,28 @@ export const useAuthForm = (): AuthFormResult => {
   useEffect(() => {
     setErrors({} as AuthFormErrors);
   }, [router]);
+
+  const authenticateProvider: AuthenticateProviderType = async (providerId) => {
+    try {
+      setIsLoggingIn(true);
+
+      const resAuth = await signIn(providerId, {
+        callbackUrl: "/dashboard",
+        redirect: false,
+      });
+
+      if (!resAuth) throw new Error("Something wrong occured. Err: 0x1");
+      if (!resAuth.ok) throw new Error(resAuth.error);
+
+      setIsLoggingIn(false);
+      router.push("/dashboard");
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    } catch (err: any) {
+      setIsLoggingIn(false);
+      const msg = errorHandler(err);
+      toast({ description: msg });
+    }
+  };
 
   const authenticate: AuthenticateType = async ({
     name,
@@ -84,7 +108,7 @@ export const useAuthForm = (): AuthFormResult => {
         redirect: false,
       });
 
-      if (!resAuth) throw new Error("Cannot login at the moment.");
+      if (!resAuth) throw new Error("Something wrong occured. Err: 0x2");
       if (!resAuth.ok) throw new Error(resAuth.error);
 
       setIsLoggingIn(false);
@@ -101,6 +125,7 @@ export const useAuthForm = (): AuthFormResult => {
     isLoggingIn,
     setIsLoggingIn,
     authenticate,
+    authenticateProvider,
     errors,
     setErrors,
   };
