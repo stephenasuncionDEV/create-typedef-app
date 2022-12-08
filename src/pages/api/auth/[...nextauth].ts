@@ -49,10 +49,9 @@ export const authOptions = (
             id: profile.id.toString(),
             name: profile.name,
             email: profile.email,
-            image: `https://ui-avatars.com/api/?name=${profile.name.replaceAll(
-              " ",
-              "+",
-            )}`,
+            image: `https://ui-avatars.com/api/?name=${profile.name
+              .split(" ")
+              .join("+")}`,
           });
         },
       }),
@@ -64,10 +63,9 @@ export const authOptions = (
             id: profile.id,
             name: profile.name,
             email: profile.email,
-            image: `https://ui-avatars.com/api/?name=${profile.name.replaceAll(
-              " ",
-              "+",
-            )}`,
+            image: `https://ui-avatars.com/api/?name=${profile.name
+              .split(" ")
+              .join("+")}`,
           });
         },
       }),
