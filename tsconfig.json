@@ -23,7 +23,7 @@
       "@/styles/*": ["src/styles/*"],
       "@/hooks/*": ["src/hooks/*"],
       "@/config/*": ["src/config/*"],
-      "@/helpers/*": ["src/helpers/*"],
+      "@/common/*": ["src/common/*"],
       "@/server/*": ["src/server/*"],
       "@/store/*": ["src/store/*"],
       "@/interfaces/*": ["src/interfaces/*"],
