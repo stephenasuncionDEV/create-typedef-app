@@ -13,9 +13,9 @@ import {
   MenuItem,
   IconButton,
   MenuDivider,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
-import { useMediaQuery } from "react-responsive";
 
 export type NavbarMenu = {
   name: string;
@@ -60,7 +60,7 @@ const NavbarMenu: FC<NavbarMenu> = ({
 };
 
 const Navbar: FC<NavbarProps> = ({ data }) => {
-  const isDesktop = useMediaQuery({ query: "(min-width: 690px)" });
+  const [isDesktop] = useMediaQuery("(min-width: 690px)");
 
   return (
     <Flex
@@ -111,9 +111,9 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
           <Menu>
             <MenuButton
               as={IconButton}
-              aria-label="Menu"
-              variant="outline-light"
+              aria-label="Menu Options"
               icon={<GiHamburgerMenu />}
+              variant="outline-light"
             />
             <MenuList>
               {data.centerMenu?.map((menu, idx) => (
