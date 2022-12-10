@@ -48,14 +48,13 @@ export const useAuthForm = (): AuthFormResult => {
       setIsLoggingIn(true);
 
       const resAuth = await signIn(providerId, {
-        callbackUrl: "/dashboard",
         redirect: false,
       });
 
-      if (!resAuth) throw new Error("Something wrong occured. Err: 0x1");
-      if (!resAuth.ok) throw new Error(resAuth.error);
+      if (resAuth?.error) throw new Error(resAuth?.error);
 
       setIsLoggingIn(false);
+
       router.push("/dashboard");
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     } catch (err: any) {
@@ -104,14 +103,13 @@ export const useAuthForm = (): AuthFormResult => {
         name,
         email,
         password,
-        callbackUrl: `/dashboard`,
         redirect: false,
       });
 
-      if (!resAuth) throw new Error("Something wrong occured. Err: 0x2");
-      if (!resAuth.ok) throw new Error(resAuth.error);
+      if (resAuth?.error) throw new Error(resAuth?.error);
 
       setIsLoggingIn(false);
+
       router.push("/dashboard");
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     } catch (err: any) {

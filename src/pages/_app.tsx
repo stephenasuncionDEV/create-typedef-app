@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import { trpc } from "@/server/trpc";
 import store from "@/store/index";
-import theme from "@/theme/index";
+import theme from "@/styles/theme/index";
 import "@/styles/globals.scss";
 
 const MyApp = ({

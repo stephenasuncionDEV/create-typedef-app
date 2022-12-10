@@ -30,10 +30,22 @@ const styles: Styles = {
   }),
 };
 
+const colors = {
+  primary: "#753FE5",
+};
+
+const shadows = {
+  white: "0 4px 14px 0 rgba(255,255,255,.1)",
+  black: "0 4px 14px 0 rgba(0,0,0,.1)",
+  purple: "0 4px 14px 0 rgba(117,63,229,.1)",
+};
+
 const theme = extendTheme({
   config,
   fonts,
   styles,
+  colors,
+  shadows,
   components: {
     Button,
     Link,

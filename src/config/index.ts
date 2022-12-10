@@ -18,6 +18,6 @@ const configs: Config = {
   test,
 };
 
-const exportedConfig = configs[process.env.NODE_ENV];
+const appConfig = configs[process.env.NODE_ENV];
 
-export default exportedConfig;
+export default appConfig;

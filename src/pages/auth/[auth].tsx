@@ -187,14 +187,10 @@ const Auth: NextPage<AuthProps> = ({ providers }) => {
                 )}
               </FormControl>
               <Button
-                variant="outline"
+                variant="outline-light"
                 size="lg"
                 w="full"
                 fontSize="10pt"
-                bg="whiteAlpha.200"
-                _hover={{
-                  bg: "whiteAlpha.300",
-                }}
                 type="submit"
               >
                 {isLogin ? "Login" : "Create account"}

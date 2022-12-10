@@ -29,6 +29,16 @@ const Button: ComponentStyleConfig = {
       },
       color: "white",
     }),
+    transparent: (props: ComponentDefaultProps) => ({
+      bg: "transparent",
+      _hover: {
+        color: mode("blackAlpha.500", "whiteAlpha.500")(props),
+        _disabled: {
+          color: mode("blackAlpha.500", "whiteAlpha.500")(props),
+        },
+      },
+      color: mode("black", "white")(props),
+    }),
     "outline-light": (props: ComponentDefaultProps) => ({
       bg: "whiteAlpha.200",
       border: mode(
@@ -36,7 +46,7 @@ const Button: ComponentStyleConfig = {
         "1px solid rgba(255, 255, 255, 0.16)",
       )(props),
       _hover: {
-        bg: "whiteAlpha.400",
+        bg: "whiteAlpha.300",
         _disabled: {
           opacity: 0.6,
         },
