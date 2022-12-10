@@ -81,7 +81,7 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
         justifyContent="space-between"
         alignItems="center"
         pl="2em"
-        pr=".5em"
+        pr={isDesktop ? "2em" : ".5em"}
         position="relative"
       >
         <HStack alignItems="center" py="1em">
