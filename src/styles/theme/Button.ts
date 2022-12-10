@@ -29,6 +29,16 @@ const Button: ComponentStyleConfig = {
       },
       color: "white",
     }),
+    transparent: (props: ComponentDefaultProps) => ({
+      bg: "transparent",
+      _hover: {
+        color: mode("blackAlpha.500", "whiteAlpha.500")(props),
+        _disabled: {
+          color: mode("blackAlpha.500", "whiteAlpha.500")(props),
+        },
+      },
+      color: mode("black", "white")(props),
+    }),
     "outline-light": (props: ComponentDefaultProps) => ({
       bg: "whiteAlpha.200",
       border: mode(
