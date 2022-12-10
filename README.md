@@ -25,6 +25,12 @@ create-typedef-template is a full-stack web application template inspired by [cr
 
 > Note: Read [CONTRIBUTING.md](https://github.com/stephenasuncionDEV/create-typedef-app/blob/main/CONTRIBUTING.md) before submitting a pull request.
 
+## Preview
+
+![](public/assets/images/preview-one.png)
+
+![](public/assets/images/preview-two.png)
+
 ## How to use
 
 Go to [create-typedef-app repository](https://github.com/stephenasuncionDEV/create-typedef-app), and click `Use this template`.
