@@ -36,7 +36,7 @@ const Button: ComponentStyleConfig = {
         "1px solid rgba(255, 255, 255, 0.16)",
       )(props),
       _hover: {
-        bg: "whiteAlpha.400",
+        bg: "whiteAlpha.300",
         _disabled: {
           opacity: 0.6,
         },
