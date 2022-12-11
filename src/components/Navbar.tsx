@@ -17,6 +17,20 @@ import {
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 
+export const navbarData: NavbarData = {
+  company: "Typedef",
+  logo: "/assets/images/logo-white.svg",
+  centerMenu: [
+    { name: "Features", link: "/#features" },
+    { name: "Pricing", link: "/#pricing" },
+    { name: "Company", link: "/#company" },
+  ],
+  rightMenu: [
+    { name: "Log in", link: "/auth/login" },
+    { name: "Sign up", link: "/auth/register", variant: "outline-light" },
+  ],
+};
+
 export type NavbarMenu = {
   name: string;
   link: string;
@@ -34,15 +48,11 @@ export type NavbarMenu = {
     | undefined;
 };
 
-export type NavbarData = {
+export interface NavbarData {
   company: string;
   logo: string;
   centerMenu?: NavbarMenu[];
   rightMenu?: NavbarMenu[];
-};
-
-export interface NavbarProps {
-  data: NavbarData;
 }
 
 const NavbarMenu: FC<NavbarMenu> = ({
@@ -59,7 +69,7 @@ const NavbarMenu: FC<NavbarMenu> = ({
   );
 };
 
-const Navbar: FC<NavbarProps> = ({ data }) => {
+const Navbar: FC = () => {
   const [isDesktop] = useMediaQuery("(min-width: 690px)");
 
   return (
@@ -84,10 +94,17 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
         pr={isDesktop ? "2em" : ".5em"}
         position="relative"
       >
-        <HStack alignItems="center" py="1em">
-          <NextImage src={data.logo} alt="Logo" width={18} height={18} />
-          <Text>{data.company}</Text>
-        </HStack>
+        <NextLink href="/">
+          <HStack alignItems="center" py="1em">
+            <NextImage
+              src={navbarData.logo}
+              alt="Logo"
+              width={18}
+              height={18}
+            />
+            <Text>{navbarData.company}</Text>
+          </HStack>
+        </NextLink>
         {isDesktop ? (
           <>
             <HStack
@@ -97,12 +114,12 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
               transform="translate(-50%, -50%)"
               spacing="1.5em"
             >
-              {data.centerMenu?.map((menu, idx) => (
+              {navbarData.centerMenu?.map((menu, idx) => (
                 <NavbarMenu key={idx} {...menu} />
               ))}
             </HStack>
             <HStack>
-              {data.rightMenu?.map((menu, idx) => (
+              {navbarData.rightMenu?.map((menu, idx) => (
                 <NavbarMenu key={idx} {...menu} />
               ))}
             </HStack>
@@ -116,13 +133,13 @@ const Navbar: FC<NavbarProps> = ({ data }) => {
               variant="outline-light"
             />
             <MenuList>
-              {data.centerMenu?.map((menu, idx) => (
+              {navbarData.centerMenu?.map((menu, idx) => (
                 <NextLink key={idx} href={menu.link}>
                   <MenuItem>{menu.name}</MenuItem>
                 </NextLink>
               ))}
               <MenuDivider />
-              {data.rightMenu?.map((menu, idx) => (
+              {navbarData.rightMenu?.map((menu, idx) => (
                 <NextLink key={idx} href={menu.link}>
                   <MenuItem>{menu.name}</MenuItem>
                 </NextLink>
