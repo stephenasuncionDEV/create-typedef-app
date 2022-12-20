@@ -25,50 +25,33 @@ export async function middleware(req: NextRequest) {
 
   const securedRoutes = ["/dashboard"];
   const repelRoutes = ["/auth"];
-  const protectedRoutes = securedRoutes.concat(repelRoutes);
 
-  for (let i = 0; i < protectedRoutes.length; i++) {
-    const route = protectedRoutes[i];
+  let isVerified = false;
 
-    if (!req.nextUrl.pathname.startsWith(route)) continue;
+  if (authCookie) {
+    const { value: sessionToken } = authCookie as SessionCookie;
 
-    if (securedRoutes.includes(route) && !authCookie) {
+    const session = await fetch(`${config.clientURL}/api/auth/verifySession`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sessionToken }),
+    });
+
+    const sessionData = (await session.json()) as Session;
+    if (!sessionData) {
       return NextResponse.redirect(new URL("/auth/login", req.url));
     }
 
-    if (authCookie) {
-      const { value: sessionToken } = authCookie as SessionCookie;
+    isVerified = sessionToken === sessionData.sessionToken;
+  }
 
-      const session = await fetch(
-        `${config.clientURL}/api/auth/verifySession`,
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ sessionToken }),
-        },
-      );
-
-      const sessionData = (await session.json()) as Session;
-      if (!sessionData) {
-        return NextResponse.redirect(new URL("/auth/login", req.url));
-      }
-
-      const isVerified = sessionToken === sessionData.sessionToken;
-
-      if (
-        repelRoutes.includes(route) &&
-        authCookie &&
-        sessionData &&
-        isVerified
-      ) {
-        return NextResponse.redirect(new URL("/dashboard", req.url));
-      }
-    }
-
-    break;
+  if (repelRoutes.includes(pathname) && authCookie && isVerified) {
+    return NextResponse.redirect(new URL("/dashboard", req.url));
+  } else if (securedRoutes.includes(pathname) && !isVerified) {
+    return NextResponse.redirect(new URL("/auth/login", req.url));
   }
 
   return res;
