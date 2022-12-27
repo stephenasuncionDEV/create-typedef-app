@@ -9,7 +9,6 @@ const nextConfig = withBundleAnalyzer({
   reactStrictMode: false,
   swcMinify: true,
   env: {
-    VERCEL_URL: process.env.VERCEL_URL,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     MONGODB_URI: process.env.MONGODB_URI,
@@ -20,6 +19,9 @@ const nextConfig = withBundleAnalyzer({
   },
   images: {
     domains: [""],
+  },
+  experimental: {
+    esmExternals: false,
   },
   async redirects() {
     return [
