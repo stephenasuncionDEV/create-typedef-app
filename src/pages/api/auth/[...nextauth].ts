@@ -20,7 +20,7 @@ import prisma from "@/server/db/client";
 import { encrypt, decrypt } from "@/common/utils";
 import { setCookie, getCookie } from "cookies-next";
 import { randomUUID } from "crypto";
-import { uuid } from "uuidv4";
+import { v4 } from "uuid";
 
 export interface SignInCallback {
   user: User | AdapterUser;
@@ -143,7 +143,7 @@ export const authOptions = (
       maxAge: 30 * 24 * 60 * 60,
       updateAge: 24 * 60 * 60,
       generateSessionToken: () => {
-        return randomUUID() ?? uuid();
+        return randomUUID() ?? v4();
       },
     },
     adapter: PrismaAdapter(prisma),
@@ -157,7 +157,7 @@ export const authOptions = (
           req.method === "POST" &&
           user
         ) {
-          const sessionToken = randomUUID() ?? uuid();
+          const sessionToken = randomUUID() ?? v4();
 
           const sessionExpiry = new Date();
           sessionExpiry.setDate(sessionExpiry.getDate() + 30);
@@ -183,6 +183,11 @@ export const authOptions = (
           session.user.isStaff = user.isStaff;
         }
         return session;
+      },
+      async redirect({ url, baseUrl }) {
+        if (url.startsWith("/")) return `${baseUrl}${url}`;
+        else if (new URL(url).origin === baseUrl) return url;
+        return baseUrl;
       },
     },
     jwt: {
