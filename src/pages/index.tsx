@@ -30,7 +30,7 @@ const Home: NextPage = () => {
               -app
             </Heading>
             <NextLink href="/auth/login" passHref>
-              <Button variant="outline-light">Get Started 🚀</Button>
+              <Button variant="gradient">Get Started 🚀</Button>
             </NextLink>
           </VStack>
         </Center>

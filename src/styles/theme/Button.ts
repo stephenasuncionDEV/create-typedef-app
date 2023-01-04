@@ -3,6 +3,7 @@ import type {
   ComponentDefaultProps,
 } from "@chakra-ui/theme";
 import { mode } from "@chakra-ui/theme-tools";
+import { getColor } from "@/common/utils";
 
 const Button: ComponentStyleConfig = {
   baseStyle: () => ({
@@ -76,6 +77,21 @@ const Button: ComponentStyleConfig = {
       },
       color: mode("blackAlpha.500", "whiteAlpha.500")(props),
     }),
+    gradient: (props: ComponentDefaultProps) => {
+      const { theme, bg } = props;
+
+      const bgColor = getColor(theme, bg, "#06060E");
+
+      return {
+        border: "1px solid transparent",
+        bg: `linear-gradient(${bgColor}, ${bgColor}) padding-box, linear-gradient(135deg, #EA5137, #7E0CC0) border-box`,
+        _hover: {
+          colo: "inherit",
+          textShadow: "rgb(0 0 0 / 56%) 0px 3px 12px",
+          boxShadow: "rgb(233 7 140 / 50%) 0px 1px 40px",
+        },
+      };
+    },
   },
 };
 
