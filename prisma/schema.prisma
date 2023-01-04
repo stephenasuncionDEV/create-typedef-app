@@ -59,7 +59,7 @@ model User {
   address        String?    @unique
   guestId        String?    @unique
   wallet         String?    
-  image          String     @default("https://ui-avatars.com/api/?name=U")
+  image          String?    @default("https://ui-avatars.com/api/?name=U")
   points         Int        @default(0)
   role           String     @default("user")
   accounts       Account[]
