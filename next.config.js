@@ -9,13 +9,16 @@ const nextConfig = withBundleAnalyzer({
   reactStrictMode: false,
   swcMinify: true,
   env: {
+    APP_NAME: process.env.APP_NAME,
+    POSTHOG_TOKEN: process.env.POSTHOG_TOKEN,
+    CHAIN_ID: process.env.CHAIN_ID,
+    ETHEREUM_ADDRESS: process.env.ETHEREUM_ADDRESS,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-    MONGODB_URI: process.env.MONGODB_URI,
-    GITHUB_ID: process.env.GITHUB_ID,
-    GITHUB_SECRET: process.env.GITHUB_SECRET,
-    GOOGLE_ID: process.env.GOOGLE_ID,
-    GOOGLE_SECRET: process.env.GOOGLE_SECRET,
+    EMAIL_SERVER_USER: process.env.EMAIL_SERVER_USER,
+    EMAIL_SERVER_PASSWORD: process.env.EMAIL_SERVER_PASSWORD,
+    EMAIL_SERVER_HOST: process.env.EMAIL_SERVER_HOST,
+    EMAIL_SERVER_PORT: process.env.EMAIL_SERVER_PORT,
   },
   images: {
     domains: ["ui-avatars.com"],
@@ -24,14 +27,14 @@ const nextConfig = withBundleAnalyzer({
   async redirects() {
     return [
       {
-        source: "/auth",
-        destination: "/auth/login",
-        permanent: true,
+        source: "/",
+        destination: "/auth",
+        permanent: false,
       },
       {
         source: "/about",
         destination: "/about/terms",
-        permanent: true,
+        permanent: false,
       },
     ];
   },
