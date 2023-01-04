@@ -45,7 +45,7 @@ export const footerData: FooterData = {
     },
     {
       name: "GitHub",
-      link: "https://github.com/stephenasuncionDEV",
+      link: "https://github.com/stephenasuncionDEV/create-typedef-app",
       icon: <FaGithub />,
     },
     {
@@ -60,25 +60,41 @@ export const footerData: FooterData = {
       items: [
         { name: "Features", link: "/#features" },
         { name: "Pricing", link: "/#pricing" },
-        { name: "Changelog", link: "/#changelog" },
-        { name: "Docs", link: "/#docs" },
       ],
     },
     {
       header: "Company",
       items: [
-        { name: "About us", link: "/#aboutus" },
-        { name: "Blog", link: "/#blog" },
-        { name: "Careers", link: "/#careeers" },
-        { name: "Customers", link: "/#" },
-        { name: "Brand", link: "/" },
+        {
+          name: "About us",
+          link: "https://stephenasuncion.dev/",
+          isExternal: true,
+        },
+        {
+          name: "Blog",
+          link: "https://stephenasuncion.dev/",
+          isExternal: true,
+        },
+        {
+          name: "Careers",
+          link: "https://stephenasuncion.dev/",
+          isExternal: true,
+        },
       ],
     },
     {
       header: "Resources",
       items: [
-        { name: "Community", link: "/" },
-        { name: "Contact", link: "/" },
+        {
+          name: "Community",
+          link: "https://twitter.com/Steb_01",
+          isExternal: true,
+        },
+        {
+          name: "Contact",
+          link: "https://twitter.com/Steb_01",
+          isExternal: true,
+        },
         { name: "Terms of Service", link: "/about/terms" },
         { name: "Privacy Policy", link: "/about/privacy" },
       ],
@@ -86,9 +102,16 @@ export const footerData: FooterData = {
     {
       header: "Developers",
       items: [
-        { name: "API", link: "/" },
-        { name: "Status", link: "/" },
-        { name: "GitHub", link: "/" },
+        {
+          name: "GitHub",
+          link: "https://github.com/stephenasuncionDEV/hey-jarvis",
+          isExternal: true,
+        },
+        {
+          name: "Docs",
+          link: "https://github.com/stephenasuncionDEV/hey-jarvis/blob/main/README.md",
+          isExternal: true,
+        },
       ],
     },
   ],
@@ -98,7 +121,7 @@ const Footer = () => {
   const [isCollapse] = useMediaQuery("(max-width: 966px)");
 
   return (
-    <Center as="footer" borderTop="1px solid rgb(255,255,255,.1)">
+    <Center as="footer" borderTop="1px solid rgb(0,0,0,.1)">
       <Wrap
         className="footer-wrap"
         maxW="1200px"
@@ -150,14 +173,31 @@ const Footer = () => {
               <VStack alignItems="flex-start" spacing="1em" fontSize="11pt">
                 <Text>{dir.header}</Text>
                 {dir.items.map((item, idx) => (
-                  <Link
-                    key={idx}
-                    href={item.link}
-                    style={{ textDecoration: "none" }}
-                    variant="subtle-link"
-                  >
-                    {item.name}
-                  </Link>
+                  <>
+                    {item.isExternal ? (
+                      <Link
+                        key={idx}
+                        href={item.link}
+                        isExternal
+                        style={{ textDecoration: "none" }}
+                        variant="subtle-link"
+                      >
+                        {item.name}
+                      </Link>
+                    ) : (
+                      <Link
+                        key={idx}
+                        as={NextLink}
+                        href={item.link}
+                        style={{ textDecoration: "none" }}
+                        variant="subtle-link"
+                        passHref
+                        shallow
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </>
                 ))}
               </VStack>
             </WrapItem>
