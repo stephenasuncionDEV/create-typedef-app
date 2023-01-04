@@ -52,7 +52,11 @@ const Dashboard: NextPage = () => {
           Thanks for using create-typedef-app
         </Text>
         <Tag mt="1em" size="sm">
-          <TagLabel>{session?.user?.email}</TagLabel>
+          <TagLabel>
+            {session?.user?.address ??
+              session?.user?.email ??
+              session?.user?.guestId}
+          </TagLabel>
         </Tag>
         <HStack mt="2em">
           <Button
@@ -62,7 +66,7 @@ const Dashboard: NextPage = () => {
           >
             Delete
           </Button>
-          <Button variant="primary" onClick={() => signOut()} size="sm">
+          <Button variant="outline" onClick={() => signOut()} size="sm">
             Logout
           </Button>
         </HStack>
