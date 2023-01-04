@@ -49,7 +49,7 @@ const Auth: NextPage = () => {
             <NextLink href="/">
               <NextImage
                 src="/assets/images/logo.png"
-                alt="iMintify Logo"
+                alt={`${process.env.APP_NAME} Logo`}
                 width={160}
                 height={34}
                 quality={100}

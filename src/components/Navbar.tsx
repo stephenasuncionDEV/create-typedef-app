@@ -95,7 +95,7 @@ const Navbar: FC = () => {
           <HStack alignItems="center" py="1em">
             <NextImage
               src={navbarData.logo}
-              alt="Logo"
+              alt={`${process.env.APP_NAME} Logo`}
               width={18}
               height={18}
             />

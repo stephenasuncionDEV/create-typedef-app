@@ -122,7 +122,7 @@ const Footer = () => {
             <HStack alignItems="center">
               <NextImage
                 src={footerData.logo}
-                alt="Logo"
+                alt={`${process.env.APP_NAME} Logo`}
                 width={18}
                 height={18}
               />
