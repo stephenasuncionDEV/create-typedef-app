@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
+import { useAuth } from "./useAuth";
 import { getMainnetFromWallet } from "@/common/web3";
-import Web3 from "web3";
 import errorHandler from "@/common/errorHandler";
 
 export type AuthFormErrors = {
@@ -21,6 +21,7 @@ export const useAuthForm = () => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const [errors, setErrors] = useState({} as AuthFormErrors);
+  const { ethereumLogin } = useAuth();
 
   useEffect(() => {
     setErrors({} as AuthFormErrors);
@@ -115,62 +116,6 @@ export const useAuthForm = () => {
       }
       toast({ description: msg });
     }
-  };
-
-  const ethereumLogin = async (wallet: WalletType): Promise<string> => {
-    if (
-      typeof window.ethereum === "undefined" ||
-      typeof window.web3 === "undefined"
-    ) {
-      throw new Error(
-        "No Ethereum wallet detected. Please install Metamask or Coinbase Wallet",
-      );
-    }
-
-    let provider = window.ethereum || window.web3.currentProvider;
-
-    const isMultipleProviders = window.ethereum.providers;
-
-    if (isMultipleProviders) {
-      provider = window.ethereum.providers.find(
-        /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
-        (x: any) => x.isMetaMask || x.isCoinbaseWallet,
-      );
-
-      if (
-        wallet === "metamask" &&
-        provider.hasOwnProperty("isCoinbaseWallet")
-      ) {
-        throw new Error("Please use Coinbase Wallet");
-      } else if (
-        wallet === "coinbase" &&
-        provider.hasOwnProperty("isMetaMask")
-      ) {
-        throw new Error("Please use MetaMask Wallet");
-      }
-    } else {
-      if (provider.isMetaMask && wallet === "coinbase") {
-        throw new Error(
-          "No Coinbase wallet detected. Please use Metamask Wallet",
-        );
-      } else if (provider.isCoinbaseWallet && wallet === "metamask") {
-        throw new Error(
-          "No Metamask wallet detected. Please use Coinbase Wallet",
-        );
-      }
-    }
-
-    window.web3 = new Web3(provider);
-
-    const accounts = await window.ethereum.request({
-      method: "eth_requestAccounts",
-    });
-
-    if (!accounts.length) {
-      throw new Error("No Ethereum accounts detected");
-    }
-
-    return accounts[0];
   };
 
   return {
