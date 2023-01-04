@@ -1,4 +1,6 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
+import "@chakra-ui/react";
+
 declare global {
   type WalletType = "metamask" | "coinbase" | "phantom";
   type Mainnet = "ethereum";
