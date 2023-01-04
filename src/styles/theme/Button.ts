@@ -19,12 +19,16 @@ const Button: ComponentStyleConfig = {
       },
       color: "white",
     }),
-    danger: () => ({
-      bg: "rgb(229,62,62)",
+    danger: (props: ComponentDefaultProps) => ({
+      bg: "rgba(196,48,48,0.6)",
+      border: mode(
+        "1px solid rgba(0, 0, 0, 0.16)",
+        "1px solid rgba(255, 255, 255, 0.16)",
+      )(props),
       _hover: {
-        bg: "red.400",
+        bg: "red.500",
         _disabled: {
-          bg: "red.400",
+          bg: "red.500",
         },
       },
       color: "white",
@@ -41,6 +45,9 @@ const Button: ComponentStyleConfig = {
           opacity: 0.6,
         },
       },
+      _active: {
+        bg: "whiteAlpha.200",
+      },
       color: "white",
     }),
     transparent: (props: ComponentDefaultProps) => ({
@@ -51,6 +58,9 @@ const Button: ComponentStyleConfig = {
           color: mode("blackAlpha.500", "whiteAlpha.500")(props),
         },
       },
+      _active: {
+        color: mode("black", "white")(props),
+      },
       color: mode("black", "white")(props),
     }),
     "transparent-subtle": (props: ComponentDefaultProps) => ({
@@ -60,6 +70,9 @@ const Button: ComponentStyleConfig = {
         _disabled: {
           color: mode("blackAlpha.400", "whiteAlpha.400")(props),
         },
+      },
+      _active: {
+        color: mode("blackAlpha.500", "whiteAlpha.500")(props),
       },
       color: mode("blackAlpha.500", "whiteAlpha.500")(props),
     }),
