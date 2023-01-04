@@ -36,7 +36,7 @@ export interface FooterData {
 
 export const footerData: FooterData = {
   company: "Typedef - Better Experience",
-  logo: "/assets/images/logo-white.svg",
+  logo: "/assets/images/logo.png",
   socials: [
     {
       name: "Twitter",

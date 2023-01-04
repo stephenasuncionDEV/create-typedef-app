@@ -19,16 +19,13 @@ import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
 
 export const navbarData: NavbarData = {
   company: "Typedef",
-  logo: "/assets/images/logo-white.svg",
+  logo: "/assets/images/logo.png",
   centerMenu: [
     { name: "Features", link: "/#features" },
     { name: "Pricing", link: "/#pricing" },
     { name: "Company", link: "/#company" },
   ],
-  rightMenu: [
-    { name: "Log in", link: "/auth/login" },
-    { name: "Sign up", link: "/auth/register", variant: "outline-light" },
-  ],
+  rightMenu: [{ name: "Log In", link: "/auth" }],
 };
 
 export type NavbarMenu = {
