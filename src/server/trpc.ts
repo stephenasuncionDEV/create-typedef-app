@@ -2,8 +2,8 @@ import type { AppRouter } from "./routers/_app";
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
-import config from "@/config/index";
 import superjson from "superjson";
+import { getBaseUrl } from "@/common/utils";
 
 export const trpc = createTRPCNext<AppRouter>({
   config() {
@@ -16,7 +16,7 @@ export const trpc = createTRPCNext<AppRouter>({
             (opts.direction === "down" && opts.result instanceof Error),
         }),
         httpBatchLink({
-          url: `${config.clientURL}/api/trpc`,
+          url: `${getBaseUrl()}/api/trpc`,
         }),
       ],
     };
