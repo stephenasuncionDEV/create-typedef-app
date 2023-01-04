@@ -59,11 +59,7 @@ const Dashboard: NextPage = () => {
           </TagLabel>
         </Tag>
         <HStack mt="2em">
-          <Button
-            variant="danger"
-            onClick={() => deleteUser(session?.user?.id)}
-            size="sm"
-          >
+          <Button variant="danger" onClick={deleteUser} size="sm">
             Delete
           </Button>
           <Button variant="outline" onClick={() => signOut()} size="sm">
