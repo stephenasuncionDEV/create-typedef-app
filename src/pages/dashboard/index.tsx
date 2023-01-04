@@ -12,12 +12,13 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { useAuth } from "@/hooks/auth/useAuth";
-import { useUser } from "@/hooks/user/useUser";
+import { useUserSettings } from "@/hooks/user/useUserSettings";
 import Meta from "@/components/Meta";
+import UserSettingsModal from "@/components/UserSettingsModal";
 
 const Dashboard: NextPage = () => {
   const { session, isLoading, isUnAuthenticated } = useAuth();
-  const { deleteUser } = useUser();
+  const { toggleUserSettings } = useUserSettings();
 
   if (isLoading || isUnAuthenticated) {
     return (
@@ -35,6 +36,7 @@ const Dashboard: NextPage = () => {
   return (
     <Center as="main" flexDir="column" minH="100vh">
       <Meta title="Dashboard" />
+      <UserSettingsModal />
       <Center flexDir="column">
         <NextImage
           src="/assets/images/logo.svg"
@@ -59,8 +61,8 @@ const Dashboard: NextPage = () => {
           </TagLabel>
         </Tag>
         <HStack mt="2em">
-          <Button variant="danger" onClick={deleteUser} size="sm">
-            Delete
+          <Button variant="outline" size="sm" onClick={toggleUserSettings}>
+            Settings
           </Button>
           <Button variant="outline" onClick={() => signOut()} size="sm">
             Logout
