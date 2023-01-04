@@ -126,7 +126,7 @@ const Footer = () => {
                 width={18}
                 height={18}
               />
-              <Text fontSize="10pt" color="whiteAlpha.500" textAlign="center">
+              <Text fontSize="10pt" variant="subtle" textAlign="center">
                 {footerData.company}
               </Text>
             </HStack>
@@ -153,11 +153,8 @@ const Footer = () => {
                   <Link
                     key={idx}
                     href={item.link}
-                    color="whiteAlpha.500"
                     style={{ textDecoration: "none" }}
-                    _hover={{
-                      color: "white",
-                    }}
+                    variant="subtle-link"
                   >
                     {item.name}
                   </Link>

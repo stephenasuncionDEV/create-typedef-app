@@ -1,10 +1,14 @@
-import type { ComponentStyleConfig } from "@chakra-ui/theme";
+import type {
+  ComponentStyleConfig,
+  ComponentDefaultProps,
+} from "@chakra-ui/theme";
+import { mode } from "@chakra-ui/theme-tools";
 
 const Text: ComponentStyleConfig = {
   variants: {
-    subtle: () => ({
-      color: "gray.500",
-      fontSize: "9pt",
+    subtle: (props: ComponentDefaultProps) => ({
+      color: mode("blackAlpha.800", "gray.500")(props),
+      fontSize: "10pt",
     }),
   },
 };
