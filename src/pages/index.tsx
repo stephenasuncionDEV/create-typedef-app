@@ -29,7 +29,7 @@ const Home: NextPage = () => {
               </Text>
               -app
             </Heading>
-            <NextLink href="/auth/login" passHref>
+            <NextLink href="/auth" passHref>
               <Button variant="gradient">Get Started 🚀</Button>
             </NextLink>
           </VStack>
