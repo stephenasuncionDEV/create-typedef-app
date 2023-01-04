@@ -1,24 +1,35 @@
 import type { DefaultSession } from "next-auth";
-import { ClientSafeProvider } from "next-auth/react";
+// import type { ClientSafeProvider } from "next-auth/react";
 
-declare module "next-auth/providers" {
-  type AvailableProviderType = "github" | "google" | "credentials";
-}
+// declare module "next-auth/providers" {
+//   type AvailableProviderType = "credentials";
+// }
 
-declare module "next-auth/react" {
-  interface AvailableSafeProvider extends ClientSafeProvider {
-    id: "github" | "google" | "credentials";
-  }
-}
+// declare module "next-auth/react" {
+//   interface AvailableSafeProvider extends ClientSafeProvider {
+//     id: "credentials";
+//   }
+// }
+
+import type { DefaultSession } from "next-auth";
 
 declare module "next-auth" {
   interface Session {
+    userId?: string;
     user?: {
       id: string;
-      isStaff?: boolean | null;
+      role: string;
+      points: number;
+      address?: string | null;
+      guestId?: string | null;
+      wallet?: string | null;
     } & DefaultSession["user"];
   }
   interface DefaultUser {
-    isStaff?: boolean | null;
+    role: string;
+    points: number;
+    address?: string | null;
+    guestId?: string | null;
+    wallet?: string | null;
   }
 }

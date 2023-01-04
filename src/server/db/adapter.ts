@@ -68,25 +68,25 @@ export default function PrismaAdapter(p: PrismaClient, options = {}): Adapter {
       });
     },
     async deleteSession(sessionToken) {
-      return await p.session.delete({ where: { sessionToken } });
+      const session = await p.session
+        .delete({ where: { sessionToken } })
+        .catch();
+      return session;
     },
     async createVerificationToken(data) {
       const verificationToken = await p.verificationToken.create({ data });
-      // @ts-expect-errors // MongoDB id
-      if (verificationToken.id) delete verificationToken.id;
       return verificationToken;
     },
-    async useVerificationToken({ identifier, token }) {
+    async useVerificationToken({ token }) {
       try {
         const verificationToken = await p.verificationToken.delete({
-          where: { identifier, token },
+          where: { token },
         });
-        // @ts-expect-errors // MongoDB id
-        if (verificationToken.id) delete verificationToken.id;
         return verificationToken;
       } catch (error) {
-        if ((error as Prisma.PrismaClientKnownRequestError).code === "P2025")
+        if ((error as Prisma.PrismaClientKnownRequestError).code === "P2025") {
           return null;
+        }
         throw error;
       }
     },

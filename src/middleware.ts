@@ -1,6 +1,6 @@
 import type { Session } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
-import config from "@/config/index";
+import { getBaseUrl } from "./common/utils";
 
 export interface SessionCookie {
   name: string;
@@ -9,19 +9,39 @@ export interface SessionCookie {
 
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
-  const { pathname } = req.nextUrl;
+  const url = req.nextUrl;
+  const { pathname } = url;
 
-  const apiRouteRegex = /^\/(?:_next|api|static|\.(?:.*))$/;
+  const apiRouteRegex = /^\/(_next|api|static|manifest|assets|404).*/;
   if (apiRouteRegex.test(pathname)) {
     return res;
   }
 
-  const routeBehaviors = new Map<string | RegExp, "secured" | "repel">([
+  const routeBehaviors = new Map<
+    string | RegExp,
+    "secured" | "repel" | "ignore"
+  >([
     ["/dashboard", "secured"],
-    [/^\/auth/, "repel"],
+    ["/verify", "repel"],
+    ["/auth", "repel"],
+    [/^\/about.*/, "ignore"],
   ]);
 
-  let behavior: "secured" | "repel" | undefined;
+  const isAllowed = Array.from(routeBehaviors.keys()).some((route) => {
+    if (typeof route === "string" && pathname === route) {
+      return true;
+    } else if (route instanceof RegExp && route.test(pathname)) {
+      return true;
+    }
+    return false;
+  });
+
+  if (!isAllowed) {
+    console.log(pathname);
+    return NextResponse.redirect(new URL("/404", req.url));
+  }
+
+  let behavior: "secured" | "repel" | "ignore" | undefined;
   for (const [route, routeBehavior] of Array.from(routeBehaviors.entries())) {
     if (typeof route === "string" && pathname === route) {
       behavior = routeBehavior;
@@ -30,6 +50,10 @@ export async function middleware(req: NextRequest) {
       behavior = routeBehavior;
       break;
     }
+  }
+
+  if (behavior === "ignore") {
+    return res;
   }
 
   const authCookie = req.cookies.get("next-auth.session-token") as
@@ -46,14 +70,14 @@ export async function middleware(req: NextRequest) {
   if (behavior === "repel" && authCookie && isVerified) {
     return NextResponse.redirect(new URL("/dashboard", req.url));
   } else if (behavior === "secured" && !isVerified) {
-    return NextResponse.redirect(new URL("/auth/login", req.url));
+    return NextResponse.redirect(new URL("/auth", req.url));
   }
 
   return res;
 }
 
 const verifySession = async (sessionToken: string): Promise<boolean> => {
-  const session = await fetch(`${config.clientURL}/api/auth/verifySession`, {
+  const session = await fetch(`${getBaseUrl()}/api/auth/verifySession`, {
     method: "POST",
     headers: {
       Accept: "application/json",

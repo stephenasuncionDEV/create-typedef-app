@@ -1,34 +1,16 @@
-import { useState, Dispatch, SetStateAction, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
+import { getMainnetFromWallet } from "@/common/web3";
+import Web3 from "web3";
 import errorHandler from "@/common/errorHandler";
 
-export interface DefaultAuthForm {
-  name?: string;
+export type AuthFormErrors = {
   email?: string;
-  password?: string;
-}
+};
 
-export interface AuthenticateProps extends DefaultAuthForm {
-  type: "login" | "register";
-}
-
-export type AuthFormErrors = DefaultAuthForm;
-
-export type AuthenticateType = (param: AuthenticateProps) => Promise<void>;
-export type AuthenticateProviderType = (providerId: string) => Promise<void>;
-
-export interface AuthFormResult {
-  isLoggingIn: boolean;
-  setIsLoggingIn: Dispatch<SetStateAction<boolean>>;
-  authenticate: AuthenticateType;
-  authenticateProvider: AuthenticateProviderType;
-  errors: AuthFormErrors;
-  setErrors: Dispatch<SetStateAction<AuthFormErrors>>;
-}
-
-export const useAuthForm = (): AuthFormResult => {
+export const useAuthForm = () => {
   const router = useRouter();
   const toast = useToast({
     title: "Error",
@@ -37,21 +19,51 @@ export const useAuthForm = (): AuthFormResult => {
     isClosable: true,
   });
   const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const [errors, setErrors] = useState({} as AuthFormErrors);
 
   useEffect(() => {
     setErrors({} as AuthFormErrors);
   }, [router]);
 
-  const authenticateProvider: AuthenticateProviderType = async (providerId) => {
+  const emailLogin = async (email: string) => {
     try {
       setIsLoggingIn(true);
 
-      const resAuth = await signIn(providerId, {
-        callbackUrl: "/dashboard",
+      const emailRegex =
+        /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+
+      if (!emailRegex.test(email)) {
+        throw new Error("Email address is not valid");
+      }
+
+      const resAuth = await signIn("email", {
+        email,
       });
 
-      if (resAuth?.error) throw new Error(resAuth?.error);
+      if (resAuth?.error) {
+        throw new Error(resAuth?.error);
+      }
+
+      setIsLoggingIn(false);
+
+      /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+    } catch (err: any) {
+      setIsLoggingIn(false);
+      const msg = errorHandler(err);
+      setErrors({ email: msg });
+    }
+  };
+
+  const guestLogin = async () => {
+    try {
+      setIsLoggingIn(true);
+
+      const resAuth = await signIn("guest");
+
+      if (resAuth?.error) {
+        throw new Error(resAuth?.error);
+      }
 
       setIsLoggingIn(false);
 
@@ -63,67 +75,114 @@ export const useAuthForm = (): AuthFormResult => {
     }
   };
 
-  const authenticate: AuthenticateType = async ({
-    name,
-    email,
-    password,
-    type,
-  }) => {
+  const web3Login = async (wallet: WalletType) => {
     try {
       setIsLoggingIn(true);
 
-      if (type === "login") {
-        if (!email || !password)
-          throw new Error("Email and password must be filled in.");
-      } else if (type === "register") {
-        const newErrors = {} as AuthFormErrors;
+      const mainnet = getMainnetFromWallet(wallet);
+      if (!mainnet) throw new Error("Wallet is not supported");
 
-        if (!name || name.length > 70)
-          newErrors.name = "Must have a name between 1 and 70 characters";
-        if (!email || email.length > 320)
-          newErrors.email = "Email must be valid";
-        if (
-          !password ||
-          password.length < 8 ||
-          password.length > 320 ||
-          !/[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/.test(password) ||
-          !/[A-Z]/.test(password)
-        )
-          newErrors.password =
-            "Password must atleast have 8 characters, 1 special, and 1 capital.";
+      let address = "";
 
-        if (Object.keys(newErrors).length > 0) {
-          setErrors(newErrors);
-          return;
-        }
+      if (mainnet === "ethereum") {
+        address = await ethereumLogin(wallet);
       }
 
-      const resAuth = await signIn("credentials", {
-        name,
-        email,
-        password,
-        redirect: false,
+      if (!address) {
+        throw new Error("No crypto wallet address detected");
+      }
+
+      const resAuth = await signIn("web3", {
+        wallet,
+        address,
       });
 
-      if (resAuth?.error) throw new Error(resAuth?.error);
+      if (resAuth?.error) {
+        throw new Error(resAuth?.error);
+      }
 
       setIsLoggingIn(false);
+      setIsWalletModalOpen(false);
 
-      router.push("/dashboard");
       /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
     } catch (err: any) {
       setIsLoggingIn(false);
       const msg = errorHandler(err);
+      if (msg.startsWith("No Metamask wallet detected")) {
+        window.open("https://metamask.io/", "_blank");
+      } else if (msg.startsWith("No Coinbase wallet detected")) {
+        window.open("https://www.coinbase.com/wallet", "_blank");
+      }
       toast({ description: msg });
     }
+  };
+
+  const ethereumLogin = async (wallet: WalletType): Promise<string> => {
+    if (
+      typeof window.ethereum === "undefined" ||
+      typeof window.web3 === "undefined"
+    ) {
+      throw new Error(
+        "No Ethereum wallet detected. Please install Metamask or Coinbase Wallet",
+      );
+    }
+
+    let provider = window.ethereum || window.web3.currentProvider;
+
+    const isMultipleProviders = window.ethereum.providers;
+
+    if (isMultipleProviders) {
+      provider = window.ethereum.providers.find(
+        /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
+        (x: any) => x.isMetaMask || x.isCoinbaseWallet,
+      );
+
+      if (
+        wallet === "metamask" &&
+        provider.hasOwnProperty("isCoinbaseWallet")
+      ) {
+        throw new Error("Please use Coinbase Wallet");
+      } else if (
+        wallet === "coinbase" &&
+        provider.hasOwnProperty("isMetaMask")
+      ) {
+        throw new Error("Please use MetaMask Wallet");
+      }
+    } else {
+      if (provider.isMetaMask && wallet === "coinbase") {
+        throw new Error(
+          "No Coinbase wallet detected. Please use Metamask Wallet",
+        );
+      } else if (provider.isCoinbaseWallet && wallet === "metamask") {
+        throw new Error(
+          "No Metamask wallet detected. Please use Coinbase Wallet",
+        );
+      }
+    }
+
+    window.web3 = new Web3(provider);
+
+    const accounts = await window.ethereum.request({
+      method: "eth_requestAccounts",
+    });
+
+    if (!accounts.length) {
+      throw new Error("No Ethereum accounts detected");
+    }
+
+    return accounts[0];
   };
 
   return {
     isLoggingIn,
     setIsLoggingIn,
-    authenticate,
-    authenticateProvider,
     errors,
     setErrors,
+    emailLogin,
+    guestLogin,
+    web3Login,
+    isWalletModalOpen,
+    setIsWalletModalOpen,
+    ethereumLogin,
   };
 };
