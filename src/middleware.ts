@@ -21,10 +21,10 @@ export async function middleware(req: NextRequest) {
     string | RegExp,
     "secured" | "repel" | "ignore"
   >([
+    ["/", "ignore"],
     ["/dashboard", "secured"],
     ["/verify", "repel"],
     ["/auth", "repel"],
-    ["/", "ignore"],
     [/^\/about.*/, "ignore"],
   ]);
 
