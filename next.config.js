@@ -18,10 +18,8 @@ const nextConfig = withBundleAnalyzer({
     GOOGLE_SECRET: process.env.GOOGLE_SECRET,
   },
   images: {
-    domains: [""],
-  },
-  experimental: {
-    esmExternals: false,
+    domains: ["ui-avatars.com"],
+    dangerouslyAllowSVG: true,
   },
   async redirects() {
     return [
