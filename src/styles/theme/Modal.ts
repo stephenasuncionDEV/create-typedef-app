@@ -4,7 +4,7 @@ import { mode } from "@chakra-ui/theme-tools";
 const Modal = {
   baseStyle: (props: ComponentDefaultProps) => ({
     dialog: {
-      bgColor: mode("white", "rgb(46,40,76)")(props),
+      bgColor: mode("white", "#05010D")(props),
     },
     header: {
       fontWeight: "normal",
