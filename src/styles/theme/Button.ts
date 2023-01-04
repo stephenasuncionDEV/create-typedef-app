@@ -49,7 +49,7 @@ const Button: ComponentStyleConfig = {
       _active: {
         bg: "whiteAlpha.200",
       },
-      color: "white",
+      color: mode("black", "white")(props),
     }),
     transparent: (props: ComponentDefaultProps) => ({
       bg: "transparent",
