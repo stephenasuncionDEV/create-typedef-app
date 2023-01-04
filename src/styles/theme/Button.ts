@@ -80,13 +80,13 @@ const Button: ComponentStyleConfig = {
     gradient: (props: ComponentDefaultProps) => {
       const { theme, bg } = props;
 
-      const bgColor = getColor(theme, bg, "#06060E");
+      const bgColor = getColor(theme, bg, mode("white", "#06060E")(props));
 
       return {
         border: "1px solid transparent",
         bg: `linear-gradient(${bgColor}, ${bgColor}) padding-box, linear-gradient(135deg, #EA5137, #7E0CC0) border-box`,
         _hover: {
-          colo: "inherit",
+          color: "inherit",
           textShadow: "rgb(0 0 0 / 56%) 0px 3px 12px",
           boxShadow: "rgb(233 7 140 / 50%) 0px 1px 40px",
         },
