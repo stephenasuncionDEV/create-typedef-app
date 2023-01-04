@@ -27,11 +27,6 @@ const nextConfig = withBundleAnalyzer({
   async redirects() {
     return [
       {
-        source: "/",
-        destination: "/auth",
-        permanent: false,
-      },
-      {
         source: "/about",
         destination: "/about/terms",
         permanent: false,
