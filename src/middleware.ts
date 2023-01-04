@@ -24,6 +24,7 @@ export async function middleware(req: NextRequest) {
     ["/dashboard", "secured"],
     ["/verify", "repel"],
     ["/auth", "repel"],
+    ["/", "ignore"],
     [/^\/about.*/, "ignore"],
   ]);
 
