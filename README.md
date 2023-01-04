@@ -11,7 +11,7 @@ create-typedef-template is a full-stack web application template inspired by [cr
 - [Next.js](https://nextjs.org/)
 - [TypeScript](https://typescriptlang.org/)
 - [ChakraUI](https://chakra-ui.com/)
-- [NextAuth.js](https://next-auth.js.org/) (GitHub, Google, and Credential)
+- [NextAuth.js](https://next-auth.js.org/) (Email, Guest, and Web3 Login)
 - [Prisma](https://www.prisma.io/)
 - [MongoDB](https://www.mongodb.com/)
 - [Redux](https://redux.js.org/)
