@@ -1,16 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, Dispatch, SetStateAction, useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
 import { useAuth } from "./useAuth";
-import { getMainnetFromWallet } from "@/common/web3";
+import { getBlockchainFromWallet } from "@/common/web3";
 import errorHandler from "@/common/errorHandler";
 
 export type AuthFormErrors = {
   email?: string;
 };
 
-export const useAuthForm = () => {
+export interface AuthFormResult {
+  isLoggingIn: boolean;
+  setIsLoggingIn: Dispatch<SetStateAction<boolean>>;
+  errors: AuthFormErrors;
+  setErrors: Dispatch<SetStateAction<AuthFormErrors>>;
+  emailLogin: (email: string) => void;
+  guestLogin: () => void;
+  web3Login: (wallet: WalletType) => void;
+  isWalletModalOpen: boolean;
+  setIsWalletModalOpen: Dispatch<SetStateAction<boolean>>;
+}
+
+export const useAuthForm = (): AuthFormResult => {
   const router = useRouter();
   const toast = useToast({
     title: "Error",
@@ -21,7 +33,7 @@ export const useAuthForm = () => {
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isWalletModalOpen, setIsWalletModalOpen] = useState(false);
   const [errors, setErrors] = useState({} as AuthFormErrors);
-  const { ethereumLogin } = useAuth();
+  const { web3ReAuthenticate } = useAuth();
 
   useEffect(() => {
     setErrors({} as AuthFormErrors);
@@ -80,18 +92,9 @@ export const useAuthForm = () => {
     try {
       setIsLoggingIn(true);
 
-      const mainnet = getMainnetFromWallet(wallet);
-      if (!mainnet) throw new Error("Wallet is not supported");
+      const blockchain = getBlockchainFromWallet(wallet);
 
-      let address = "";
-
-      if (mainnet === "ethereum") {
-        address = await ethereumLogin(wallet);
-      }
-
-      if (!address) {
-        throw new Error("No crypto wallet address detected");
-      }
+      const address = await web3ReAuthenticate(blockchain);
 
       const resAuth = await signIn("web3", {
         wallet,
@@ -113,6 +116,8 @@ export const useAuthForm = () => {
         window.open("https://metamask.io/", "_blank");
       } else if (msg.startsWith("No Coinbase wallet detected")) {
         window.open("https://www.coinbase.com/wallet", "_blank");
+      } else if (msg.startsWith("No Solana wallet detected")) {
+        window.open("https://phantom.app/", "_blank");
       }
       toast({ description: msg });
     }
@@ -128,6 +133,5 @@ export const useAuthForm = () => {
     web3Login,
     isWalletModalOpen,
     setIsWalletModalOpen,
-    ethereumLogin,
   };
 };
