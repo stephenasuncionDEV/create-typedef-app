@@ -3,7 +3,7 @@ import { useState } from "react";
 import { trpc } from "@/server/trpc";
 import { useToast } from "@chakra-ui/react";
 import { useSelector, useDispatch } from "react-redux";
-import { setIsUserSettingsOpen } from "@/store/user";
+import { updateIsUserSettingsOpen } from "@/store/user";
 import { signOut } from "next-auth/react";
 import errorHandler from "@/common/errorHandler";
 
@@ -69,7 +69,7 @@ export const useUserSettings = (): UseUserSettingsReturn => {
   };
 
   const toggleUserSettings = () => {
-    dispatch(setIsUserSettingsOpen(!isUserSettingsOpen));
+    dispatch(updateIsUserSettingsOpen(!isUserSettingsOpen));
   };
 
   const deleteUser = async () => {
