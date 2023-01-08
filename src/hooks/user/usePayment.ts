@@ -1,5 +1,5 @@
-import type { RootState } from "@/store/index";
 import type { TransactionInstruction, PublicKey } from "@solana/web3.js";
+import type { User } from "@prisma/client";
 import { useState } from "react";
 import {
   Transaction,
@@ -85,7 +85,7 @@ export const usePayment = () => {
             /* eslint-disable-next-line   @typescript-eslint/no-explicit-any */
             (window.ethereum as any).selectedAddress ??
             window.web3.selectedAddress ??
-            (_user.data as RootState["user"]["user"]).address,
+            (_user.data as User).address,
           to: process.env.ETHEREUM_ADDRESS,
           value: Web3.utils.toWei(price.toFixed(6), "ether"),
           gas: 21000,
@@ -111,7 +111,7 @@ export const usePayment = () => {
             SystemProgram.transfer({
               fromPubkey:
                 (window.solana.publicKey as PublicKey) ??
-                (_user.data as RootState["user"]["user"]).address,
+                (_user.data as User).address,
               toPubkey: process.env.SOLANA_ADDRESS as unknown as PublicKey,
               lamports: LAMPORTS_PER_SOL * parseFloat(price.toFixed(6)),
             }),
