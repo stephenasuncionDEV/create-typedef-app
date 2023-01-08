@@ -52,6 +52,11 @@ export const authOptions = (
             user: process.env.EMAIL_SERVER_USER,
             pass: process.env.EMAIL_SERVER_PASSWORD,
           },
+          secure: true,
+          requireTLS: true,
+          tls: {
+            rejectUnauthorized: false,
+          },
         },
         from: process.env.EMAIL_FROM,
         async sendVerificationRequest(params) {
@@ -60,9 +65,9 @@ export const authOptions = (
           const transport = createTransport(provider.server);
           const result = await transport.sendMail({
             to: identifier,
-            from: provider.from,
+            from: `${process.env.APP_NAME} ${provider.from}`,
             subject: `${process.env.APP_NAME} Login Verification`,
-            text: `[${process.env.APP_NAME}] Login by navigating to this link: ${url}`,
+            text: `${process.env.APP_NAME} Login by navigating to this link: ${url}`,
             html: `
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8"><table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100% !important;">
             <tr><td align="center">
