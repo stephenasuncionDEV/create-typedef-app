@@ -23,6 +23,7 @@ export interface WalletModalProps {
 export const walletArr = [
   { name: "Metamask", icon: "/assets/images/brands/metamask.png" },
   { name: "Coinbase", icon: "/assets/images/brands/coinbasewallet.png" },
+  { name: "Phantom", icon: "/assets/images/brands/phantom.png" },
 ];
 
 const WalletModal: FC<WalletModalProps> = ({
