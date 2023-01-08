@@ -9,6 +9,7 @@ const nextConfig = withBundleAnalyzer({
   reactStrictMode: false,
   swcMinify: true,
   env: {
+    VERCEL_URL: process.env.VERCEL_URL,
     APP_NAME: process.env.APP_NAME,
     POSTHOG_TOKEN: process.env.POSTHOG_TOKEN,
     CHAIN_ID: process.env.CHAIN_ID,
