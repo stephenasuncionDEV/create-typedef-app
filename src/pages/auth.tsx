@@ -35,7 +35,7 @@ const Auth: NextPage = () => {
 
   return (
     <Center minH="100vh">
-      <Meta title="Authentication" />
+      <Meta title={`Authentication | ${[process.env.APP_NAME]}`} />
       <WalletModal
         isLoggingIn={isLoggingIn}
         isOpen={isWalletModalOpen}
