@@ -2,8 +2,8 @@ import type { AppRouter } from "./routers/_app";
 import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
-import superjson from "superjson";
 import { getBaseUrl } from "@/common/utils";
+import superjson from "superjson";
 
 export const trpc = createTRPCNext<AppRouter>({
   config() {
@@ -20,6 +20,14 @@ export const trpc = createTRPCNext<AppRouter>({
         }),
       ],
     };
+  },
+  unstable_overrides: {
+    useMutation: {
+      async onSuccess(opts) {
+        await opts.originalFn();
+        await opts.queryClient.invalidateQueries();
+      },
+    },
   },
   ssr: false,
 });
