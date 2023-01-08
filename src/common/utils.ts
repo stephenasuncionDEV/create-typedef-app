@@ -19,7 +19,6 @@ export const capitalize = (str: string) => {
 };
 
 export const getBaseUrl = (): string => {
-  if (typeof window !== "undefined") return "";
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   return `http://localhost:${process.env.PORT ?? 3000}`;
 };
@@ -43,6 +42,24 @@ export const getColor = (
     return fallback;
 
   return theme.colors[chakraColor[0]][chakraColor[1]];
+};
+
+/* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
+export const isObjectEqual = (obj1: any, obj2: any) => {
+  const obj1Keys = Object.keys(obj1);
+  const obj2Keys = Object.keys(obj2);
+
+  if (obj1Keys.length !== obj2Keys.length) {
+    return false;
+  }
+
+  for (const objKey of obj1Keys) {
+    if (obj1[objKey] !== obj2[objKey]) {
+      return false;
+    }
+  }
+
+  return true;
 };
 
 export const getPriceFromPoints = (
