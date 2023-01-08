@@ -18,7 +18,9 @@ const Error: NextPage = () => {
           blurDataURL="https://via.placeholder.com/50/50"
           placeholder="blur"
         />
-        <Heading as="h1">404</Heading>
+        <Heading as="h1" mt="1em">
+          Oops,
+        </Heading>
         <Text fontSize="10pt">
           Page cannot be found. Go back to{" "}
           <NextLink href="/" style={{ color: "#3182ce" }}>
