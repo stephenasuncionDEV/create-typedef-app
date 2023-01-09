@@ -19,6 +19,8 @@ import {
   HStack,
   Box,
   Badge,
+  Tag,
+  TagLabel,
 } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { capitalize } from "@/common/utils";
@@ -105,7 +107,9 @@ const UserSettingsModal: FC = () => {
             {user?.guestId && (
               <>
                 <Text mt="1em">Guest ID</Text>
-                <Text variant="subtle">{user.guestId}</Text>
+                <Tag>
+                  <TagLabel>{user.guestId}</TagLabel>
+                </Tag>
               </>
             )}
             {user?.address && (
