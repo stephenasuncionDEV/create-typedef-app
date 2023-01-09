@@ -5,7 +5,7 @@ const Modal = {
   baseStyle: (props: ComponentDefaultProps) => ({
     dialog: {
       bgColor: mode("white", "#05010D")(props),
-      boxShadow: "inherit",
+      border: "1px solid rgba(255,255,255,.1)",
     },
     header: {
       fontWeight: "normal",
