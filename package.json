@@ -48,7 +48,7 @@
     "@trpc/next": "^10.8.1",
     "@trpc/react-query": "^10.8.1",
     "@trpc/server": "^10.8.1",
-    "@vercel/og": "^0.0.22",
+    "@vercel/og": "^0.0.23",
     "cookies-next": "^2.1.1",
     "crypto-js": "^4.1.1",
     "framer-motion": "^8",
