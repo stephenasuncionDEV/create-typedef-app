@@ -173,10 +173,9 @@ const Footer = () => {
               <VStack alignItems="flex-start" spacing="1em" fontSize="11pt">
                 <Text>{dir.header}</Text>
                 {dir.items.map((item, idx) => (
-                  <>
+                  <div key={idx}>
                     {item.isExternal ? (
                       <Link
-                        key={idx}
                         href={item.link}
                         isExternal
                         style={{ textDecoration: "none" }}
@@ -197,7 +196,7 @@ const Footer = () => {
                         {item.name}
                       </Link>
                     )}
-                  </>
+                  </div>
                 ))}
               </VStack>
             </WrapItem>
