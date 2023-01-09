@@ -14,12 +14,12 @@ import {
   IconButton,
   MenuDivider,
   useMediaQuery,
+  Link,
 } from "@chakra-ui/react";
 import { GiHamburgerMenu } from "@react-icons/all-files/gi/GiHamburgerMenu";
+import { FiArrowUpRight } from "@react-icons/all-files/fi/FiArrowUpRight";
 
 export const navbarData: NavbarData = {
-  company: "Typedef",
-  logo: "/assets/images/logo.png",
   centerMenu: [
     { name: "Features", link: "/#features" },
     { name: "Pricing", link: "/#pricing" },
@@ -40,14 +40,15 @@ export type NavbarMenu = {
         | "solid"
         | "unstyled"
         | "transparent"
+        | "primary"
+        | "gradient"
         | "outline-light"
       >
     | undefined;
+  isExternal?: boolean;
 };
 
 export interface NavbarData {
-  company: string;
-  logo: string;
   centerMenu?: NavbarMenu[];
   rightMenu?: NavbarMenu[];
 }
@@ -56,10 +57,26 @@ const NavbarMenu: FC<NavbarMenu> = ({
   link,
   name,
   variant = "transparent",
+  isExternal = false,
 }) => {
+  if (isExternal) {
+    return (
+      <Link href={link} isExternal style={{ textDecoration: "none" }}>
+        <Button
+          variant={variant}
+          size="sm"
+          fontWeight="700"
+          rightIcon={<FiArrowUpRight />}
+        >
+          {name}
+        </Button>
+      </Link>
+    );
+  }
+
   return (
-    <NextLink href={link}>
-      <Button variant={variant} size="sm">
+    <NextLink href={link} passHref shallow>
+      <Button variant={variant} size="sm" fontWeight="700">
         {name}
       </Button>
     </NextLink>
@@ -78,8 +95,8 @@ const Navbar: FC = () => {
       backdropFilter="auto"
       backdropBlur="xl"
       backdropSaturate="1.5"
-      borderBottom="1px solid rgb(255,255,255,.1)"
-      zIndex={1}
+      borderBottom="1px solid rgb(0,0,0,.1)"
+      zIndex={2}
     >
       <Flex
         as="nav"
@@ -94,12 +111,12 @@ const Navbar: FC = () => {
         <NextLink href="/">
           <HStack alignItems="center" py="1em">
             <NextImage
-              src={navbarData.logo}
+              src="/assets/images/logo.png"
               alt={`${process.env.APP_NAME} Logo`}
               width={18}
               height={18}
             />
-            <Text>{navbarData.company}</Text>
+            <Text fontWeight="500">{process.env.APP_NAME}</Text>
           </HStack>
         </NextLink>
         {isDesktop ? (
