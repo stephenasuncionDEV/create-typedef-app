@@ -39,8 +39,8 @@ const Dashboard: NextPage = () => {
       <UserSettingsModal />
       <Center flexDir="column">
         <NextImage
-          src="/assets/images/logo.svg"
-          alt="Template Logo"
+          src="/assets/images/icon.png"
+          alt={`${process.env.APP_NAME} Icon`}
           width={50}
           height={50}
           quality={100}
