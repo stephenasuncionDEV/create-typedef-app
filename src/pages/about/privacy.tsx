@@ -3,7 +3,6 @@ import { Flex, Center, Heading, Text, VStack } from "@chakra-ui/react";
 import Meta from "@/components/Meta";
 
 const config = {
-  businessName: "Acme Corporation",
   contactInformation: "mywebsite@example.com",
 };
 
@@ -16,11 +15,11 @@ const Privacy: NextPage = () => {
           Privacy Policy
         </Heading>
         <Text>Updated December 6, 2022</Text>
-        <Text variant="subtle">User and {config.businessName}</Text>
+        <Text variant="subtle">User and {process.env.APP_NAME}</Text>
         <VStack spacing="2em" mt="2em">
           <section id="introduction">
             <Text mt=".5em">
-              At {config.businessName}, we take the privacy of our users
+              At {process.env.APP_NAME}, we take the privacy of our users
               seriously. This privacy policy explains how we collect, use, and
               protect the personal information of users of our website (the
               &quot;Website&quot;). By using the Website, you consent to the
