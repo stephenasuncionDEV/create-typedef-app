@@ -12,7 +12,8 @@ export async function middleware(req: NextRequest) {
   const url = req.nextUrl;
   const { pathname } = url;
 
-  const apiRouteRegex = /^\/(_next|api|static|manifest|assets|404).*/;
+  const apiRouteRegex =
+    /^\/(_next|api|static|manifest|assets|404|about|favicon).*/;
   if (apiRouteRegex.test(pathname)) {
     return res;
   }
@@ -25,7 +26,6 @@ export async function middleware(req: NextRequest) {
     ["/dashboard", "secured"],
     ["/verify", "repel"],
     ["/auth", "repel"],
-    [/^\/about.*/, "ignore"],
   ]);
 
   const isAllowed = Array.from(routeBehaviors.keys()).some((route) => {
