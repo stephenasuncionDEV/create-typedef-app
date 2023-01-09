@@ -32,6 +32,7 @@ const styles: Styles = {
 
 const colors = {
   primary: "#753FE5",
+  background: "#05010D",
 };
 
 const shadows = {
