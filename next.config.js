@@ -14,6 +14,8 @@ const nextConfig = withBundleAnalyzer({
     POSTHOG_TOKEN: process.env.POSTHOG_TOKEN,
     CHAIN_ID: process.env.CHAIN_ID,
     ETHEREUM_ADDRESS: process.env.ETHEREUM_ADDRESS,
+    SOLANA_ADDRESS: process.env.SOLANA_ADDRESS,
+    SOLANA_RPC_URL: process.env.SOLANA_RPC_URL,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     EMAIL_SERVER_USER: process.env.EMAIL_SERVER_USER,
