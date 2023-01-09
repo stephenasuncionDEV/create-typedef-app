@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import { useRef, MutableRefObject } from "react";
 import { GetServerSidePropsContext } from "next";
 import NextImage from "next/image";
-import NextLink from "next/link";
 import { getProviders } from "next-auth/react";
 import {
   Center,
@@ -44,7 +43,7 @@ const Auth: NextPage = () => {
       />
       <SlideFade in={true} offsetY="50px">
         <Flex flexDir="column" alignItems="center" maxW="288px">
-          <NextLink href="/">
+          <Link href="/">
             <NextImage
               src="/assets/images/icon.png"
               alt={`${process.env.APP_NAME} Icon`}
@@ -54,7 +53,7 @@ const Auth: NextPage = () => {
               placeholder="blur"
               blurDataURL="https://picsum.photos/40/40"
             />
-          </NextLink>
+          </Link>
           <Heading as="h1" fontSize="18pt" mt="1em">
             Welcome back
           </Heading>
