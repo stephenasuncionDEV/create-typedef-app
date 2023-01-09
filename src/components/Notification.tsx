@@ -1,8 +1,23 @@
 import type { FC } from "react";
 import NextLink from "next/link";
 import { Flex, CloseButton, Text, HStack, Button } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { motion, MotionStyle } from "framer-motion";
 import { useNotification } from "@/hooks/useNotification";
+
+export type NotificationPosition =
+  | "top-left"
+  | "top-right"
+  | "bottom-left"
+  | "bottom-right";
+
+export interface NotificationPositions {
+  [key: string]: {
+    top?: number;
+    left?: number;
+    right?: number;
+    bottom?: number;
+  };
+}
 
 export interface NotificationProps {
   title: string;
@@ -11,7 +26,27 @@ export interface NotificationProps {
   action: string;
   callback?: () => void;
   href?: string;
+  position?: NotificationPosition;
 }
+
+const positions: NotificationPositions = {
+  "top-left": {
+    top: 0,
+    left: 0,
+  },
+  "top-right": {
+    top: 0,
+    right: 0,
+  },
+  "bottom-left": {
+    bottom: 0,
+    left: 0,
+  },
+  "bottom-right": {
+    bottom: 0,
+    right: 0,
+  },
+};
 
 const Notification: FC<NotificationProps> = ({
   title,
@@ -20,22 +55,24 @@ const Notification: FC<NotificationProps> = ({
   action,
   callback,
   href,
+  position = "top-right",
 }) => {
   const { isVisible, close } = useNotification();
 
   if (!isVisible || !activate) return null;
+
+  const style: MotionStyle = {
+    position: "absolute",
+    zIndex: "3",
+    ...positions[position],
+  };
 
   return (
     <motion.div
       initial={{ opacity: 0, right: 0 }}
       animate={{ opacity: 1, right: 20 }}
       transition={{ duration: 1 }}
-      style={{
-        position: "absolute",
-        top: "5",
-        right: "5",
-        zIndex: "3",
-      }}
+      style={style}
     >
       <Flex
         p="1em"
