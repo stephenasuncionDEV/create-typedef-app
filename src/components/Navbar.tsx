@@ -115,6 +115,9 @@ const Navbar: FC = () => {
               alt={`${process.env.APP_NAME} Logo`}
               width={18}
               height={18}
+              quality={100}
+              placeholder="blur"
+              blurDataURL="https://picsum.photos/18/18"
             />
             <Text fontWeight="500">{process.env.APP_NAME}</Text>
           </HStack>
