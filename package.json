@@ -59,7 +59,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-redux": "^8.0.5",
-    "superjson": "^1.12.1",
+    "superjson": "^1.12.2",
     "uuidv4": "^6.2.13",
     "web3": "^1.8.1",
     "zod": "^3.20.2"
