@@ -2,12 +2,18 @@
 import "@chakra-ui/react";
 
 declare global {
+  interface ModalProps {
+    isOpen: boolean;
+    onClose: () => void;
+  }
+
   interface Window {
     ethereum?: any;
     web3?: {
       currentProvider: any;
       eth: any;
       selectedAddress?: string;
+      utils: any;
     };
     phantom?: {
       solana?: PhantomWallet;
@@ -16,6 +22,7 @@ declare global {
   }
 
   type WalletType = "metamask" | "coinbase" | "phantom";
+
   type Mainnet =
     | "ethereum"
     | "polygon"
@@ -25,6 +32,7 @@ declare global {
     | "arbitrum"
     | "binance"
     | "solana";
+
   type Testnet =
     | "goerli"
     | "mumbai"
@@ -34,7 +42,9 @@ declare global {
     | "arbitrum-goerli"
     | "binance-testnet"
     | "solana-devnet";
+
   type Network = Mainnet | Testnet;
+
   type NetworkData =
     | {
         chainName: string;
@@ -48,7 +58,14 @@ declare global {
         blockExplorerUrls: string[];
       }
     | undefined;
+
   type Blockchain = "ethereum" | "solana";
+
+  interface PhantomWalletEvents {
+    connect(...args: unknown[]): unknown;
+    disconnect(...args: unknown[]): unknown;
+    accountChanged(newPublicKey: PublicKey): unknown;
+  }
 
   interface PhantomWallet extends EventEmitter<PhantomWalletEvents> {
     isPhantom?: boolean;
@@ -68,10 +85,4 @@ declare global {
     connect(): Promise<void>;
     disconnect(): Promise<void>;
   }
-}
-
-interface PhantomWalletEvents {
-  connect(...args: unknown[]): unknown;
-  disconnect(...args: unknown[]): unknown;
-  accountChanged(newPublicKey: PublicKey): unknown;
 }
