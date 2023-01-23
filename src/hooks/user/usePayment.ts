@@ -12,7 +12,7 @@ import { useToast } from "@chakra-ui/react";
 import { useAuth } from "@/hooks/auth/useAuth";
 import { trpc } from "@/server/trpc";
 import { getBlockchainFromWallet, getCurrencyFromNetwork } from "@/common/web3";
-import { getPriceFromPoints } from "@/common/utils";
+import { getPriceFromPoints } from "@/common/price";
 import errorHandler from "@/common/errorHandler";
 import Web3 from "web3";
 
@@ -32,7 +32,7 @@ export const usePayment = () => {
   const _removePoints = trpc.user.removePoints.useMutation();
   const _addPayment = trpc.payment.addPayment.useMutation();
   const _user = trpc.user.getUser.useQuery();
-  const payments = trpc.payment.getPayments.useQuery().data?.payments ?? [];
+  const payments = trpc.payment.getPayments.useQuery();
 
   const createTransactionSolana = async (
     connection: Connection,
@@ -49,7 +49,7 @@ export const usePayment = () => {
     return anyTransaction;
   };
 
-  const payWithCrypto = async (amount: number) => {
+  const payWithCrypto = async (amount: number): Promise<boolean> => {
     try {
       setIsPaying(true);
 
@@ -141,23 +141,19 @@ export const usePayment = () => {
         description: `Successfuly Purchased ${amount} Points`,
         status: "success",
       });
+
+      return true;
       /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
     } catch (err: any) {
       setIsPaying(false);
       const msg = errorHandler(err);
       toast({ description: msg });
+      return false;
     }
   };
 
   const spendPoints = async (value: number) => {
-    try {
-      await _removePoints.mutateAsync({ value });
-
-      /* eslint-disable-next-line  @typescript-eslint/no-explicit-any */
-    } catch (err: any) {
-      const msg = errorHandler(err);
-      toast({ description: msg });
-    }
+    await _removePoints.mutateAsync({ value });
   };
 
   return {
