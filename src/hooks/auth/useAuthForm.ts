@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { signIn } from "next-auth/react";
 import { useToast } from "@chakra-ui/react";
@@ -10,19 +10,7 @@ export type AuthFormErrors = {
   email?: string;
 };
 
-export interface AuthFormResult {
-  isLoggingIn: boolean;
-  setIsLoggingIn: Dispatch<SetStateAction<boolean>>;
-  errors: AuthFormErrors;
-  setErrors: Dispatch<SetStateAction<AuthFormErrors>>;
-  emailLogin: (email: string) => void;
-  guestLogin: () => void;
-  web3Login: (wallet: WalletType) => void;
-  isWalletModalOpen: boolean;
-  setIsWalletModalOpen: Dispatch<SetStateAction<boolean>>;
-}
-
-export const useAuthForm = (): AuthFormResult => {
+export const useAuthForm = () => {
   const router = useRouter();
   const toast = useToast({
     title: "Error",
