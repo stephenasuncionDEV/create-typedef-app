@@ -11,7 +11,7 @@ const Error: NextPage = () => {
       <Center flexDir="column">
         <NextImage
           src="/assets/images/logo.svg"
-          alt="Template Logo"
+          alt={`${process.env.APP_NAME} Logo`}
           width={50}
           height={50}
           quality={100}
