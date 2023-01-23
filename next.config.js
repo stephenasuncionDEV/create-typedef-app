@@ -24,7 +24,12 @@ const nextConfig = withBundleAnalyzer({
     EMAIL_SERVER_PORT: process.env.EMAIL_SERVER_PORT,
   },
   images: {
-    domains: ["ui-avatars.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**",
+      },
+    ],
     dangerouslyAllowSVG: true,
   },
   async redirects() {
