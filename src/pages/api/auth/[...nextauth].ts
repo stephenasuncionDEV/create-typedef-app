@@ -19,9 +19,9 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import PrismaAdapter from "@/server/db/adapter";
 import prisma from "@/server/db/client";
 import { setCookie, getCookie } from "cookies-next";
-import { v4 } from "uuid";
 import { createTransport } from "nodemailer";
-import { getBaseUrl } from "@/common/utils";
+import { v4 } from "uuid";
+import { cookiePrefix, getUrl } from "@/common/utils";
 
 export interface SignInCallback {
   user: User | AdapterUser;
@@ -76,7 +76,7 @@ export const authOptions = (
 
           <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100% !important;">
             <tr><td align="center">
-            <div><img src="${getBaseUrl()}/assets/images/icon.png" width="40" height="40" alt="${
+            <div><img src="${getUrl()}/assets/images/icon.png" width="40" height="40" alt="${
               process.env.APP_NAME
             }"></div>
             <h1 style="color:#000;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif;font-size:24px;font-weight:normal;margin:30px 0;padding:0;">Proceed to login for <b>${
@@ -85,7 +85,7 @@ export const authOptions = (
           </td></tr>
           </table>
 
-          <p style="color:#000;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif;font-size:14px;line-height:24px;">To complete the signup process, please click on the button below. Please note that by completing your signup you are agreeing to our <a href="${getBaseUrl()}/about/terms" target="_blank" style="color:#067df7;text-decoration:none;">Terms of Service</a> and <a href="${getBaseUrl()}/about/privacy" target="_blank" style="color:#067df7;text-decoration:none;">Privacy Policy</a>:</p>
+          <p style="color:#000;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Roboto&quot;, &quot;Oxygen&quot;, &quot;Ubuntu&quot;, &quot;Cantarell&quot;, &quot;Fira Sans&quot;, &quot;Droid Sans&quot;, &quot;Helvetica Neue&quot;, sans-serif;font-size:14px;line-height:24px;">To complete the signup process, please click on the button below. Please note that by completing your signup you are agreeing to our <a href="${getUrl()}/about/terms" target="_blank" style="color:#067df7;text-decoration:none;">Terms of Service</a> and <a href="${getUrl()}/about/privacy" target="_blank" style="color:#067df7;text-decoration:none;">Privacy Policy</a>:</p>
           <br>
 
           <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100% !important;">
@@ -141,6 +141,7 @@ export const authOptions = (
           const user = await prisma.user.create({
             data: {
               guestId: v4(),
+              image: "https://ui-avatars.com/api/?name=U",
             },
           });
 
@@ -177,6 +178,7 @@ export const authOptions = (
             data: {
               wallet,
               address,
+              image: "https://ui-avatars.com/api/?name=U",
             },
           });
 
@@ -189,7 +191,7 @@ export const authOptions = (
       signOut: "/auth",
       error: `/auth`,
       verifyRequest: "/verify",
-      newUser: "/get-started",
+      newUser: "/dashboard",
     },
     session: {
       strategy: "database",
@@ -222,7 +224,7 @@ export const authOptions = (
             },
           });
 
-          setCookie("next-auth.session-token", sessionToken, {
+          setCookie(`${cookiePrefix}next-auth.session-token`, sessionToken, {
             req,
             res,
             expires: sessionExpiry,
@@ -256,7 +258,10 @@ export const authOptions = (
           ((req.query.nextauth as string[]).includes("guest") ||
             (req.query.nextauth as string[]).includes("web3"))
         ) {
-          const cookie = getCookie("next-auth.session-token", { req, res });
+          const cookie = getCookie(`${cookiePrefix}next-auth.session-token`, {
+            req,
+            res,
+          });
 
           if (cookie) return cookie as string;
           return "";
@@ -287,7 +292,13 @@ export const authOptions = (
           },
         });
 
-        if (!user?.guestId) return;
+        if (!user) return;
+
+        if (user.wallet === "phantom" && window.solana) {
+          window.solana.disconnect();
+        }
+
+        if (!user.guestId) return;
 
         await prisma.user.deleteMany({
           where: {
