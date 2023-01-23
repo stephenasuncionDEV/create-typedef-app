@@ -7,42 +7,22 @@ export interface SessionCookie {
   value: string;
 }
 
+export const config = {
+  matcher: ["/dashboard", "/verify", "/auth"],
+};
+
 export async function middleware(req: NextRequest) {
   const res = NextResponse.next();
   const url = req.nextUrl;
   const { pathname } = url;
 
-  const apiRouteRegex =
-    /^\/(_next|api|static|manifest|assets|404|about|favicon).*/;
-  if (apiRouteRegex.test(pathname)) {
-    return res;
-  }
-
-  const routeBehaviors = new Map<
-    string | RegExp,
-    "secured" | "repel" | "ignore"
-  >([
-    ["/", "ignore"],
+  const routeBehaviors = new Map<string | RegExp, "secured" | "repel">([
     ["/dashboard", "secured"],
     ["/verify", "repel"],
     ["/auth", "repel"],
   ]);
 
-  const isAllowed = Array.from(routeBehaviors.keys()).some((route) => {
-    if (typeof route === "string" && pathname === route) {
-      return true;
-    } else if (route instanceof RegExp && route.test(pathname)) {
-      return true;
-    }
-    return false;
-  });
-
-  if (!isAllowed) {
-    console.log(pathname);
-    return NextResponse.redirect(new URL("/404", req.url));
-  }
-
-  let behavior: "secured" | "repel" | "ignore" | undefined;
+  let behavior: "secured" | "repel" | undefined;
   for (const [route, routeBehavior] of Array.from(routeBehaviors.entries())) {
     if (typeof route === "string" && pathname === route) {
       behavior = routeBehavior;
@@ -53,15 +33,11 @@ export async function middleware(req: NextRequest) {
     }
   }
 
-  if (behavior === "ignore") {
-    return res;
-  }
+  let isVerified = false;
 
   const authCookie = req.cookies.get("next-auth.session-token") as
     | SessionCookie
     | undefined;
-
-  let isVerified = false;
 
   if (authCookie) {
     const { value: sessionToken } = authCookie as SessionCookie;
