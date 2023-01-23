@@ -19,6 +19,14 @@ export const capitalize = (str: string) => {
 };
 
 export const getBaseUrl = (): string => {
+  if (typeof window !== "undefined") return "";
+  if (process.env.MAIN_HOST) return `https://${process.env.MAIN_HOST}`;
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return `http://localhost:${process.env.PORT ?? 3000}`;
+};
+
+export const getUrl = (): string => {
+  if (process.env.MAIN_HOST) return `https://${process.env.MAIN_HOST}`;
   if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
   return `http://localhost:${process.env.PORT ?? 3000}`;
 };
@@ -62,15 +70,5 @@ export const isObjectEqual = (obj1: any, obj2: any) => {
   return true;
 };
 
-export const getPriceFromPoints = (
-  amount: number,
-  currency: "usd" | "eth" | "sol" | "matic",
-) => {
-  const rate = {
-    usd: 1,
-    eth: 0.0008323864936967532,
-    sol: 0.10005,
-    matic: 1.3187392852433075,
-  }[currency];
-  return amount * rate;
-};
+export const cookiePrefix =
+  process.env.NODE_ENV === "production" ? "__Secure-" : "";
