@@ -25,7 +25,6 @@
       "@/common/*": ["src/common/*"],
       "@/server/*": ["src/server/*"],
       "@/store/*": ["src/store/*"],
-      "@/interfaces/*": ["src/interfaces/*"],
       "@/types/*": ["src/types/*"]
     },
     "plugins": [
