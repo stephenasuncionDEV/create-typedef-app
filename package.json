@@ -53,7 +53,7 @@
     "crypto-js": "^4.1.1",
     "framer-motion": "^8",
     "next": "13.1.5",
-    "next-auth": "^4.18.8",
+    "next-auth": "^4.18.10",
     "next-sitemap": "^3.1.47",
     "nodemailer": "^6.9.0",
     "posthog-js": "^1.40.2",
