@@ -5,7 +5,7 @@ import type {
 } from "next";
 import type { inferAsyncReturnType } from "@trpc/server";
 import type { CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { unstable_getServerSession, type Session } from "next-auth";
+import { getServerSession, type Session } from "next-auth";
 import { authOptions } from "../pages/api/auth/[...nextauth]";
 
 import prisma from "./db/client";
@@ -18,7 +18,7 @@ export const getServerAuthSession = async (ctx: {
   req: GetServerSidePropsContext["req"];
   res: GetServerSidePropsContext["res"];
 }) => {
-  return await unstable_getServerSession(
+  return await getServerSession(
     ctx.req,
     ctx.res,
     authOptions(ctx.req as NextApiRequest, ctx.res as NextApiResponse),
