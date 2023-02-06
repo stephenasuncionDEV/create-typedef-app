@@ -1,6 +1,6 @@
 import type { Session } from "@prisma/client";
 import { NextResponse, type NextRequest } from "next/server";
-import { getBaseUrl } from "./common/utils";
+import { getBaseUrl, cookiePrefix } from "./common/utils";
 
 export interface SessionCookie {
   name: string;
@@ -35,9 +35,9 @@ export async function middleware(req: NextRequest) {
 
   let isVerified = false;
 
-  const authCookie = req.cookies.get("next-auth.session-token") as
-    | SessionCookie
-    | undefined;
+  const authCookie = req.cookies.get(
+    `${cookiePrefix}next-auth.session-token`,
+  ) as SessionCookie | undefined;
 
   if (authCookie) {
     const { value: sessionToken } = authCookie as SessionCookie;
