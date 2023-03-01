@@ -51,7 +51,7 @@
     "@vercel/og": "^0.1.0",
     "cookies-next": "^2.1.1",
     "crypto-js": "^4.1.1",
-    "framer-motion": "^9",
+    "framer-motion": "^10",
     "next": "13.1.6",
     "next-auth": "^4.19.2",
     "next-sitemap": "^3.1.52",
