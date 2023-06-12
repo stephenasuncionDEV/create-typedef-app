@@ -5203,13 +5203,12 @@ postcss@8.4.14:
     picocolors "^1.0.0"
     source-map-js "^1.0.2"
 
-posthog-js@^1.58.0:
-  version "1.58.0"
-  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.58.0.tgz#02a626abd2f428f2c1d8ef972df509f159deea72"
-  integrity sha512-PpH/MwjwV6UHDsv78xFvteEWYgY3O/HTKBnotzmkNCDWgsKzNr978B1AKzgtBU2GzBsnwUfuK+u2O6mxRzFSWw==
+posthog-js@^1.67.1:
+  version "1.67.1"
+  resolved "https://registry.yarnpkg.com/posthog-js/-/posthog-js-1.67.1.tgz#980d99021ab6e525b7aeb9db7383fcf5c171b51d"
+  integrity sha512-gvdCVrrxoRYbtNTCUt2/YdZ+tfSfzcl72ym/dtRVCYJpwlCUIKnNJ3E2g7Bbw1+Ki6CvGxdu9r7jHIWnvJAMuw==
   dependencies:
     fflate "^0.4.1"
-    rrweb-snapshot "^1.1.14"
 
 preact-render-to-string@^5.1.19:
   version "5.2.6"
@@ -5621,11 +5620,6 @@ rpc-websockets@^7.5.0:
   optionalDependencies:
     bufferutil "^4.0.1"
     utf-8-validate "^5.0.2"
-
-rrweb-snapshot@^1.1.14:
-  version "1.1.14"
-  resolved "https://registry.yarnpkg.com/rrweb-snapshot/-/rrweb-snapshot-1.1.14.tgz#9d4d9be54a28a893373428ee4393ec7e5bd83fcc"
-  integrity sha512-eP5pirNjP5+GewQfcOQY4uBiDnpqxNRc65yKPW0eSoU1XamDfc4M8oqpXGMyUyvLyxFDB0q0+DChuxxiU2FXBQ==
 
 run-parallel@^1.1.9:
   version "1.2.0"
