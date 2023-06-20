@@ -82,7 +82,7 @@
     "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.3",
     "prettier": "^2.8.8",
-    "prisma": "^4.14.0",
+    "prisma": "^4.16.0",
     "sass": "^1.63.4",
     "typescript": "5.0.4"
   }
