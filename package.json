@@ -62,7 +62,7 @@
     "react-redux": "^8.0.5",
     "superjson": "^1.13.1",
     "uuidv4": "^6.2.13",
-    "web3": "^1.8.2",
+    "web3": "^4.1.1",
     "zod": "^3.22.1"
   },
   "devDependencies": {
