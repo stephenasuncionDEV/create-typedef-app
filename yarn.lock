@@ -1359,17 +1359,17 @@
     "@xml-tools/parser" "^1.0.11"
     prettier ">=2.4.0"
 
-"@prisma/client@^4.14.0":
-  version "4.14.0"
-  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-4.14.0.tgz#715b3dd045d094b03cb0a7f2991f088d15ae553e"
-  integrity sha512-MK/XaA2sFdfaOa7I9MjNKz6dxeIEdeZlnpNRoF2w3JuRLlFJLkpp6cD3yaqw2nUUhbrn3Iqe3ZpVV+VuGGil7Q==
+"@prisma/client@^5.4.0":
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/@prisma/client/-/client-5.4.0.tgz#216eddccc38c5eb56febcb781a273b7bd55ded5f"
+  integrity sha512-JEo7J24OgEyNJg6hWRecIj6NJcB0chBCXFhWoO5exDVReMxiaY801lLLd6KStVFJHCWVEWoMLPUqhOvQA5MUuw==
   dependencies:
-    "@prisma/engines-version" "4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c"
+    "@prisma/engines-version" "5.4.0-47.a5596b96668f0f4b397761ce0956db54e17e48c4"
 
-"@prisma/engines-version@4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c":
-  version "4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c"
-  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-4.14.0-67.d9a4c5988f480fa576d43970d5a23641aa77bc9c.tgz#0aeca447c4a5f23c83f68b8033e627b60bc01850"
-  integrity sha512-3jum8/YSudeSN0zGW5qkpz+wAN2V/NYCQ+BPjvHYDfWatLWlQkqy99toX0GysDeaUoBIJg1vaz2yKqiA3CFcQw==
+"@prisma/engines-version@5.4.0-47.a5596b96668f0f4b397761ce0956db54e17e48c4":
+  version "5.4.0-47.a5596b96668f0f4b397761ce0956db54e17e48c4"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-5.4.0-47.a5596b96668f0f4b397761ce0956db54e17e48c4.tgz#4a7ff7465c05f8e4bbfdcc41c9972e158010fd15"
+  integrity sha512-liWWFhIL5hMhVt4f9HWqMSnBgVicVFGKsEzO5gBfLr9aG1JgjjMDYNmqqLji0Hp0VpD8ffTQTOVZDJRUVBD4dw==
 
 "@prisma/engines@4.14.0":
   version "4.14.0"
