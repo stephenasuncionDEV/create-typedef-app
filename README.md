@@ -1,10 +1,10 @@
+Boilerplate no longer maintained!
+
 <img src='./public/assets/images/logo.svg' alt='Next.js Template Logo' width='48px'/>
 
 # create-typedef-app
 
 ![CodeQl Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/codeql-analysis.yml/badge.svg) ![DockerHub Badge](https://github.com/stephenasuncionDEV/create-typedef-app/actions/workflows/docker-deployment.yml/badge.svg)
-
-> My preferred version of create-t3-app
 
 create-typedef-template is a full-stack web application template inspired by [create-t3-app](https://github.com/t3-oss/create-t3-app) that contains the following technology stack:
 
